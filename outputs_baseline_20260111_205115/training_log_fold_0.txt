@@ -1,0 +1,1790 @@
+================================================================================
+CONFIGURATION
+================================================================================
+Data root: /home/frank/Dropbox/Project/kaggle_severstal/input/
+Output dir: outputs_20260111_205115
+Model: unet with resnet18 encoder
+Num classes: 4
+Num folds: 5
+Num epochs: 25
+Batch size: 4 (effective: 4)
+Learning rate: 0.0005
+Optimizer: adam
+Loss: bce_with_logits
+Scheduler: reduce_on_plateau
+Seed: 69
+Checkpoint: /home/frank/Dropbox/Project/kaggle_severstal/code_unet_baseline_20260110/outputs_20260111_161650/fold_0/checkpoint_epoch_6.pth
+================================================================================
+
+
+Note: Checkpoint will be loaded for fold 0
+Using device: cuda:0
+Fold 0: Train samples = 10054, Val samples = 2514
+
+================================================================================
+Loading checkpoint from: /home/frank/Dropbox/Project/kaggle_severstal/code_unet_baseline_20260110/outputs_20260111_161650/fold_0/checkpoint_epoch_6.pth
+================================================================================
+  ✓ Model state loaded
+  ✓ Optimizer state loaded
+  ✓ Resuming from epoch 6
+  ✓ Best Dice: 0.6555
+  ✓ Best Loss: 0.0144
+================================================================================
+
+
+################################################################################
+# Starting training for Fold 0
+# Output directory: outputs_20260111_205115/fold_0
+# Resuming from epoch 7
+################################################################################
+
+
+================================================================================
+Fold 0 | Epoch 7/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0168
+  Batch [100/2514] | Loss: 0.0149
+  Batch [150/2514] | Loss: 0.0136
+  Batch [200/2514] | Loss: 0.0147
+  Batch [250/2514] | Loss: 0.0151
+  Batch [300/2514] | Loss: 0.0149
+  Batch [350/2514] | Loss: 0.0146
+  Batch [400/2514] | Loss: 0.0147
+  Batch [450/2514] | Loss: 0.0145
+  Batch [500/2514] | Loss: 0.0143
+  Batch [550/2514] | Loss: 0.0149
+  Batch [600/2514] | Loss: 0.0150
+  Batch [650/2514] | Loss: 0.0148
+  Batch [700/2514] | Loss: 0.0147
+  Batch [750/2514] | Loss: 0.0146
+  Batch [800/2514] | Loss: 0.0146
+  Batch [850/2514] | Loss: 0.0146
+  Batch [900/2514] | Loss: 0.0147
+  Batch [950/2514] | Loss: 0.0147
+  Batch [1000/2514] | Loss: 0.0147
+  Batch [1050/2514] | Loss: 0.0148
+  Batch [1100/2514] | Loss: 0.0150
+  Batch [1150/2514] | Loss: 0.0151
+  Batch [1200/2514] | Loss: 0.0152
+  Batch [1250/2514] | Loss: 0.0150
+  Batch [1300/2514] | Loss: 0.0150
+  Batch [1350/2514] | Loss: 0.0151
+  Batch [1400/2514] | Loss: 0.0150
+  Batch [1450/2514] | Loss: 0.0149
+  Batch [1500/2514] | Loss: 0.0148
+  Batch [1550/2514] | Loss: 0.0148
+  Batch [1600/2514] | Loss: 0.0148
+  Batch [1650/2514] | Loss: 0.0148
+  Batch [1700/2514] | Loss: 0.0148
+  Batch [1750/2514] | Loss: 0.0148
+  Batch [1800/2514] | Loss: 0.0148
+  Batch [1850/2514] | Loss: 0.0148
+  Batch [1900/2514] | Loss: 0.0148
+  Batch [1950/2514] | Loss: 0.0148
+  Batch [2000/2514] | Loss: 0.0148
+  Batch [2050/2514] | Loss: 0.0149
+  Batch [2100/2514] | Loss: 0.0149
+  Batch [2150/2514] | Loss: 0.0149
+  Batch [2200/2514] | Loss: 0.0149
+  Batch [2250/2514] | Loss: 0.0149
+  Batch [2300/2514] | Loss: 0.0148
+  Batch [2350/2514] | Loss: 0.0148
+  Batch [2400/2514] | Loss: 0.0148
+  Batch [2450/2514] | Loss: 0.0148
+  Batch [2500/2514] | Loss: 0.0148
+
+Train Results:
+  Loss: 0.0148 | Dice: 0.6436 | Dice_pos: 0.4729 | Dice_neg: 0.8365 | IoU: 0.3689
+  Per-Class Metrics:
+    Class 1: Dice=0.9283, IoU=0.9283, Prec=1.0000, Recall=0.9283, ClsAcc=0.9283, ClsF1=0.7391
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9248
+    Class 3: Dice=0.7081, IoU=0.6603, Prec=0.8163, Recall=0.8114, ClsAcc=0.8496, ClsF1=0.7880
+    Class 4: Dice=0.9185, IoU=0.9112, Prec=0.9419, Recall=0.9649, ClsAcc=0.9438, ClsF1=0.8232
+  Time: 463.2s
+
+================================================================================
+Fold 0 | Epoch 7/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0176
+  Batch [100/629] | Loss: 0.0166
+  Batch [150/629] | Loss: 0.0163
+  Batch [200/629] | Loss: 0.0154
+  Batch [250/629] | Loss: 0.0162
+  Batch [300/629] | Loss: 0.0157
+  Batch [350/629] | Loss: 0.0155
+  Batch [400/629] | Loss: 0.0158
+  Batch [450/629] | Loss: 0.0158
+  Batch [500/629] | Loss: 0.0156
+  Batch [550/629] | Loss: 0.0156
+  Batch [600/629] | Loss: 0.0155
+
+Validation Results:
+  Loss: 0.0154 | Dice: 0.6545 | Dice_pos: 0.3830 | Dice_neg: 0.9610 | IoU: 0.2957
+  Per-Class Metrics:
+    Class 1: Dice=0.9300, IoU=0.9300, Prec=1.0000, Recall=0.9300, ClsAcc=0.9300, ClsF1=0.7440
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7400, IoU=0.7006, Prec=0.9390, Recall=0.7431, ClsAcc=0.8792, ClsF1=0.7885
+    Class 4: Dice=0.9414, IoU=0.9345, Prec=0.9743, Recall=0.9574, ClsAcc=0.9670, ClsF1=0.8879
+  Time: 90.8s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_7.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.6555 | Best Loss: 0.0144
+
+================================================================================
+Fold 0 | Epoch 8/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0159
+  Batch [100/2514] | Loss: 0.0137
+  Batch [150/2514] | Loss: 0.0140
+  Batch [200/2514] | Loss: 0.0134
+  Batch [250/2514] | Loss: 0.0138
+  Batch [300/2514] | Loss: 0.0139
+  Batch [350/2514] | Loss: 0.0140
+  Batch [400/2514] | Loss: 0.0136
+  Batch [450/2514] | Loss: 0.0135
+  Batch [500/2514] | Loss: 0.0139
+  Batch [550/2514] | Loss: 0.0140
+  Batch [600/2514] | Loss: 0.0143
+  Batch [650/2514] | Loss: 0.0142
+  Batch [700/2514] | Loss: 0.0147
+  Batch [750/2514] | Loss: 0.0148
+  Batch [800/2514] | Loss: 0.0147
+  Batch [850/2514] | Loss: 0.0145
+  Batch [900/2514] | Loss: 0.0150
+  Batch [950/2514] | Loss: 0.0149
+  Batch [1000/2514] | Loss: 0.0150
+  Batch [1050/2514] | Loss: 0.0149
+  Batch [1100/2514] | Loss: 0.0149
+  Batch [1150/2514] | Loss: 0.0149
+  Batch [1200/2514] | Loss: 0.0148
+  Batch [1250/2514] | Loss: 0.0147
+  Batch [1300/2514] | Loss: 0.0146
+  Batch [1350/2514] | Loss: 0.0148
+  Batch [1400/2514] | Loss: 0.0148
+  Batch [1450/2514] | Loss: 0.0148
+  Batch [1500/2514] | Loss: 0.0148
+  Batch [1550/2514] | Loss: 0.0147
+  Batch [1600/2514] | Loss: 0.0147
+  Batch [1650/2514] | Loss: 0.0147
+  Batch [1700/2514] | Loss: 0.0147
+  Batch [1750/2514] | Loss: 0.0148
+  Batch [1800/2514] | Loss: 0.0149
+  Batch [1850/2514] | Loss: 0.0148
+  Batch [1900/2514] | Loss: 0.0148
+  Batch [1950/2514] | Loss: 0.0147
+  Batch [2000/2514] | Loss: 0.0146
+  Batch [2050/2514] | Loss: 0.0145
+  Batch [2100/2514] | Loss: 0.0146
+  Batch [2150/2514] | Loss: 0.0148
+  Batch [2200/2514] | Loss: 0.0147
+  Batch [2250/2514] | Loss: 0.0147
+  Batch [2300/2514] | Loss: 0.0146
+  Batch [2350/2514] | Loss: 0.0145
+  Batch [2400/2514] | Loss: 0.0146
+  Batch [2450/2514] | Loss: 0.0145
+  Batch [2500/2514] | Loss: 0.0145
+
+Train Results:
+  Loss: 0.0145 | Dice: 0.6521 | Dice_pos: 0.4808 | Dice_neg: 0.8456 | IoU: 0.3820
+  Per-Class Metrics:
+    Class 1: Dice=0.9283, IoU=0.9283, Prec=1.0000, Recall=0.9283, ClsAcc=0.9283, ClsF1=0.7446
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9232
+    Class 3: Dice=0.7159, IoU=0.6677, Prec=0.8230, Recall=0.8144, ClsAcc=0.8557, ClsF1=0.7960
+    Class 4: Dice=0.9273, IoU=0.9199, Prec=0.9492, Recall=0.9663, ClsAcc=0.9511, ClsF1=0.8456
+  Time: 453.6s
+
+================================================================================
+Fold 0 | Epoch 8/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0151
+  Batch [100/629] | Loss: 0.0147
+  Batch [150/629] | Loss: 0.0143
+  Batch [200/629] | Loss: 0.0136
+  Batch [250/629] | Loss: 0.0145
+  Batch [300/629] | Loss: 0.0139
+  Batch [350/629] | Loss: 0.0137
+  Batch [400/629] | Loss: 0.0139
+  Batch [450/629] | Loss: 0.0139
+  Batch [500/629] | Loss: 0.0137
+  Batch [550/629] | Loss: 0.0137
+  Batch [600/629] | Loss: 0.0136
+
+Validation Results:
+  Loss: 0.0136 | Dice: 0.6671 | Dice_pos: 0.4600 | Dice_neg: 0.9009 | IoU: 0.3633
+  Per-Class Metrics:
+    Class 1: Dice=0.9300, IoU=0.9300, Prec=1.0000, Recall=0.9300, ClsAcc=0.9300, ClsF1=0.7440
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7370, IoU=0.6921, Prec=0.8940, Recall=0.7752, ClsAcc=0.8764, ClsF1=0.8020
+    Class 4: Dice=0.9271, IoU=0.9195, Prec=0.9442, Recall=0.9715, ClsAcc=0.9491, ClsF1=0.8441
+  Time: 112.5s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_8.pth
+  *** New best model saved: outputs_20260111_205115/fold_0/best_model.pth ***
+
+  Current LR: 5.00e-04 | Best Dice: 0.6671 | Best Loss: 0.0136
+
+================================================================================
+Fold 0 | Epoch 9/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0108
+  Batch [100/2514] | Loss: 0.0124
+  Batch [150/2514] | Loss: 0.0127
+  Batch [200/2514] | Loss: 0.0127
+  Batch [250/2514] | Loss: 0.0131
+  Batch [300/2514] | Loss: 0.0126
+  Batch [350/2514] | Loss: 0.0125
+  Batch [400/2514] | Loss: 0.0126
+  Batch [450/2514] | Loss: 0.0128
+  Batch [500/2514] | Loss: 0.0129
+  Batch [550/2514] | Loss: 0.0132
+  Batch [600/2514] | Loss: 0.0133
+  Batch [650/2514] | Loss: 0.0131
+  Batch [700/2514] | Loss: 0.0132
+  Batch [750/2514] | Loss: 0.0130
+  Batch [800/2514] | Loss: 0.0128
+  Batch [850/2514] | Loss: 0.0129
+  Batch [900/2514] | Loss: 0.0128
+  Batch [950/2514] | Loss: 0.0129
+  Batch [1000/2514] | Loss: 0.0131
+  Batch [1050/2514] | Loss: 0.0130
+  Batch [1100/2514] | Loss: 0.0130
+  Batch [1150/2514] | Loss: 0.0131
+  Batch [1200/2514] | Loss: 0.0133
+  Batch [1250/2514] | Loss: 0.0133
+  Batch [1300/2514] | Loss: 0.0134
+  Batch [1350/2514] | Loss: 0.0135
+  Batch [1400/2514] | Loss: 0.0136
+  Batch [1450/2514] | Loss: 0.0137
+  Batch [1500/2514] | Loss: 0.0136
+  Batch [1550/2514] | Loss: 0.0137
+  Batch [1600/2514] | Loss: 0.0138
+  Batch [1650/2514] | Loss: 0.0139
+  Batch [1700/2514] | Loss: 0.0138
+  Batch [1750/2514] | Loss: 0.0138
+  Batch [1800/2514] | Loss: 0.0138
+  Batch [1850/2514] | Loss: 0.0137
+  Batch [1900/2514] | Loss: 0.0138
+  Batch [1950/2514] | Loss: 0.0137
+  Batch [2000/2514] | Loss: 0.0137
+  Batch [2050/2514] | Loss: 0.0136
+  Batch [2100/2514] | Loss: 0.0135
+  Batch [2150/2514] | Loss: 0.0135
+  Batch [2200/2514] | Loss: 0.0136
+  Batch [2250/2514] | Loss: 0.0135
+  Batch [2300/2514] | Loss: 0.0135
+  Batch [2350/2514] | Loss: 0.0135
+  Batch [2400/2514] | Loss: 0.0135
+  Batch [2450/2514] | Loss: 0.0135
+  Batch [2500/2514] | Loss: 0.0135
+
+Train Results:
+  Loss: 0.0135 | Dice: 0.6661 | Dice_pos: 0.5002 | Dice_neg: 0.8534 | IoU: 0.3989
+  Per-Class Metrics:
+    Class 1: Dice=0.9283, IoU=0.9283, Prec=1.0000, Recall=0.9283, ClsAcc=0.9283, ClsF1=0.7395
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9224
+    Class 3: Dice=0.7260, IoU=0.6776, Prec=0.8238, Recall=0.8222, ClsAcc=0.8624, ClsF1=0.8069
+    Class 4: Dice=0.9367, IoU=0.9291, Prec=0.9547, Recall=0.9709, ClsAcc=0.9579, ClsF1=0.8700
+  Time: 452.2s
+
+================================================================================
+Fold 0 | Epoch 9/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0154
+  Batch [100/629] | Loss: 0.0146
+  Batch [150/629] | Loss: 0.0144
+  Batch [200/629] | Loss: 0.0138
+  Batch [250/629] | Loss: 0.0144
+  Batch [300/629] | Loss: 0.0140
+  Batch [350/629] | Loss: 0.0140
+  Batch [400/629] | Loss: 0.0143
+  Batch [450/629] | Loss: 0.0144
+  Batch [500/629] | Loss: 0.0142
+  Batch [550/629] | Loss: 0.0142
+  Batch [600/629] | Loss: 0.0141
+
+Validation Results:
+  Loss: 0.0141 | Dice: 0.6765 | Dice_pos: 0.4755 | Dice_neg: 0.9035 | IoU: 0.3738
+  Per-Class Metrics:
+    Class 1: Dice=0.9300, IoU=0.9300, Prec=1.0000, Recall=0.9300, ClsAcc=0.9300, ClsF1=0.7440
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7216, IoU=0.6730, Prec=0.8352, Recall=0.8069, ClsAcc=0.8617, ClsF1=0.8049
+    Class 4: Dice=0.9554, IoU=0.9496, Prec=0.9933, Recall=0.9541, ClsAcc=0.9801, ClsF1=0.9330
+  Time: 435.0s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_9.pth
+  *** New best model saved: outputs_20260111_205115/fold_0/best_model.pth ***
+
+  Current LR: 5.00e-04 | Best Dice: 0.6765 | Best Loss: 0.0141
+
+================================================================================
+Fold 0 | Epoch 10/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0125
+  Batch [100/2514] | Loss: 0.0137
+  Batch [150/2514] | Loss: 0.0131
+  Batch [200/2514] | Loss: 0.0132
+  Batch [250/2514] | Loss: 0.0128
+  Batch [300/2514] | Loss: 0.0132
+  Batch [350/2514] | Loss: 0.0131
+  Batch [400/2514] | Loss: 0.0127
+  Batch [450/2514] | Loss: 0.0127
+  Batch [500/2514] | Loss: 0.0127
+  Batch [550/2514] | Loss: 0.0129
+  Batch [600/2514] | Loss: 0.0129
+  Batch [650/2514] | Loss: 0.0133
+  Batch [700/2514] | Loss: 0.0132
+  Batch [750/2514] | Loss: 0.0130
+  Batch [800/2514] | Loss: 0.0130
+  Batch [850/2514] | Loss: 0.0130
+  Batch [900/2514] | Loss: 0.0132
+  Batch [950/2514] | Loss: 0.0131
+  Batch [1000/2514] | Loss: 0.0131
+  Batch [1050/2514] | Loss: 0.0131
+  Batch [1100/2514] | Loss: 0.0131
+  Batch [1150/2514] | Loss: 0.0132
+  Batch [1200/2514] | Loss: 0.0133
+  Batch [1250/2514] | Loss: 0.0137
+  Batch [1300/2514] | Loss: 0.0137
+  Batch [1350/2514] | Loss: 0.0136
+  Batch [1400/2514] | Loss: 0.0137
+  Batch [1450/2514] | Loss: 0.0138
+  Batch [1500/2514] | Loss: 0.0138
+  Batch [1550/2514] | Loss: 0.0138
+  Batch [1600/2514] | Loss: 0.0137
+  Batch [1650/2514] | Loss: 0.0136
+  Batch [1700/2514] | Loss: 0.0137
+  Batch [1750/2514] | Loss: 0.0137
+  Batch [1800/2514] | Loss: 0.0137
+  Batch [1850/2514] | Loss: 0.0136
+  Batch [1900/2514] | Loss: 0.0135
+  Batch [1950/2514] | Loss: 0.0135
+  Batch [2000/2514] | Loss: 0.0135
+  Batch [2050/2514] | Loss: 0.0134
+  Batch [2100/2514] | Loss: 0.0134
+  Batch [2150/2514] | Loss: 0.0134
+  Batch [2200/2514] | Loss: 0.0134
+  Batch [2250/2514] | Loss: 0.0134
+  Batch [2300/2514] | Loss: 0.0134
+  Batch [2350/2514] | Loss: 0.0135
+  Batch [2400/2514] | Loss: 0.0135
+  Batch [2450/2514] | Loss: 0.0134
+  Batch [2500/2514] | Loss: 0.0134
+
+Train Results:
+  Loss: 0.0133 | Dice: 0.6742 | Dice_pos: 0.4976 | Dice_neg: 0.8738 | IoU: 0.3976
+  Per-Class Metrics:
+    Class 1: Dice=0.9283, IoU=0.9283, Prec=1.0000, Recall=0.9283, ClsAcc=0.9283, ClsF1=0.7458
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9236
+    Class 3: Dice=0.7305, IoU=0.6823, Prec=0.8306, Recall=0.8205, ClsAcc=0.8669, ClsF1=0.8154
+    Class 4: Dice=0.9428, IoU=0.9353, Prec=0.9609, Recall=0.9708, ClsAcc=0.9635, ClsF1=0.8854
+  Time: 424.5s
+
+================================================================================
+Fold 0 | Epoch 10/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0143
+  Batch [100/629] | Loss: 0.0130
+  Batch [150/629] | Loss: 0.0129
+  Batch [200/629] | Loss: 0.0126
+  Batch [250/629] | Loss: 0.0132
+  Batch [300/629] | Loss: 0.0128
+  Batch [350/629] | Loss: 0.0126
+  Batch [400/629] | Loss: 0.0129
+  Batch [450/629] | Loss: 0.0129
+  Batch [500/629] | Loss: 0.0128
+  Batch [550/629] | Loss: 0.0128
+  Batch [600/629] | Loss: 0.0127
+
+Validation Results:
+  Loss: 0.0127 | Dice: 0.6961 | Dice_pos: 0.5161 | Dice_neg: 0.8992 | IoU: 0.4090
+  Per-Class Metrics:
+    Class 1: Dice=0.9300, IoU=0.9300, Prec=1.0000, Recall=0.9300, ClsAcc=0.9300, ClsF1=0.7440
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7380, IoU=0.6889, Prec=0.8371, Recall=0.8214, ClsAcc=0.8696, ClsF1=0.8052
+    Class 4: Dice=0.9571, IoU=0.9500, Prec=0.9816, Recall=0.9653, ClsAcc=0.9789, ClsF1=0.9346
+  Time: 317.3s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_10.pth
+  *** New best model saved: outputs_20260111_205115/fold_0/best_model.pth ***
+
+  Current LR: 5.00e-04 | Best Dice: 0.6961 | Best Loss: 0.0127
+
+================================================================================
+Fold 0 | Epoch 11/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0135
+  Batch [100/2514] | Loss: 0.0123
+  Batch [150/2514] | Loss: 0.0111
+  Batch [200/2514] | Loss: 0.0111
+  Batch [250/2514] | Loss: 0.0119
+  Batch [300/2514] | Loss: 0.0123
+  Batch [350/2514] | Loss: 0.0128
+  Batch [400/2514] | Loss: 0.0129
+  Batch [450/2514] | Loss: 0.0136
+  Batch [500/2514] | Loss: 0.0134
+  Batch [550/2514] | Loss: 0.0132
+  Batch [600/2514] | Loss: 0.0132
+  Batch [650/2514] | Loss: 0.0128
+  Batch [700/2514] | Loss: 0.0129
+  Batch [750/2514] | Loss: 0.0129
+  Batch [800/2514] | Loss: 0.0132
+  Batch [850/2514] | Loss: 0.0131
+  Batch [900/2514] | Loss: 0.0133
+  Batch [950/2514] | Loss: 0.0132
+  Batch [1000/2514] | Loss: 0.0131
+  Batch [1050/2514] | Loss: 0.0131
+  Batch [1100/2514] | Loss: 0.0131
+  Batch [1150/2514] | Loss: 0.0131
+  Batch [1200/2514] | Loss: 0.0130
+  Batch [1250/2514] | Loss: 0.0130
+  Batch [1300/2514] | Loss: 0.0130
+  Batch [1350/2514] | Loss: 0.0131
+  Batch [1400/2514] | Loss: 0.0130
+  Batch [1450/2514] | Loss: 0.0132
+  Batch [1500/2514] | Loss: 0.0132
+  Batch [1550/2514] | Loss: 0.0132
+  Batch [1600/2514] | Loss: 0.0133
+  Batch [1650/2514] | Loss: 0.0132
+  Batch [1700/2514] | Loss: 0.0131
+  Batch [1750/2514] | Loss: 0.0131
+  Batch [1800/2514] | Loss: 0.0131
+  Batch [1850/2514] | Loss: 0.0130
+  Batch [1900/2514] | Loss: 0.0130
+  Batch [1950/2514] | Loss: 0.0130
+  Batch [2000/2514] | Loss: 0.0130
+  Batch [2050/2514] | Loss: 0.0130
+  Batch [2100/2514] | Loss: 0.0131
+  Batch [2150/2514] | Loss: 0.0131
+  Batch [2200/2514] | Loss: 0.0130
+  Batch [2250/2514] | Loss: 0.0130
+  Batch [2300/2514] | Loss: 0.0130
+  Batch [2350/2514] | Loss: 0.0130
+  Batch [2400/2514] | Loss: 0.0130
+  Batch [2450/2514] | Loss: 0.0131
+  Batch [2500/2514] | Loss: 0.0130
+
+Train Results:
+  Loss: 0.0130 | Dice: 0.6753 | Dice_pos: 0.5006 | Dice_neg: 0.8727 | IoU: 0.3996
+  Per-Class Metrics:
+    Class 1: Dice=0.9282, IoU=0.9282, Prec=1.0000, Recall=0.9282, ClsAcc=0.9282, ClsF1=0.7379
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9224
+    Class 3: Dice=0.7340, IoU=0.6858, Prec=0.8337, Recall=0.8227, ClsAcc=0.8685, ClsF1=0.8131
+    Class 4: Dice=0.9479, IoU=0.9406, Prec=0.9661, Recall=0.9708, ClsAcc=0.9687, ClsF1=0.8978
+  Time: 442.4s
+
+================================================================================
+Fold 0 | Epoch 11/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0173
+  Batch [100/629] | Loss: 0.0157
+  Batch [150/629] | Loss: 0.0154
+  Batch [200/629] | Loss: 0.0145
+  Batch [250/629] | Loss: 0.0153
+  Batch [300/629] | Loss: 0.0146
+  Batch [350/629] | Loss: 0.0143
+  Batch [400/629] | Loss: 0.0146
+  Batch [450/629] | Loss: 0.0146
+  Batch [500/629] | Loss: 0.0144
+  Batch [550/629] | Loss: 0.0143
+  Batch [600/629] | Loss: 0.0143
+
+Validation Results:
+  Loss: 0.0142 | Dice: 0.6570 | Dice_pos: 0.4799 | Dice_neg: 0.8569 | IoU: 0.3804
+  Per-Class Metrics:
+    Class 1: Dice=0.9300, IoU=0.9300, Prec=1.0000, Recall=0.9300, ClsAcc=0.9300, ClsF1=0.7440
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7310, IoU=0.6851, Prec=0.8733, Recall=0.7880, ClsAcc=0.8688, ClsF1=0.7972
+    Class 4: Dice=0.9197, IoU=0.9119, Prec=0.9394, Recall=0.9694, ClsAcc=0.9404, ClsF1=0.8165
+  Time: 404.8s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_11.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.6961 | Best Loss: 0.0127
+
+================================================================================
+Fold 0 | Epoch 12/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0151
+  Batch [100/2514] | Loss: 0.0134
+  Batch [150/2514] | Loss: 0.0139
+  Batch [200/2514] | Loss: 0.0131
+  Batch [250/2514] | Loss: 0.0128
+  Batch [300/2514] | Loss: 0.0130
+  Batch [350/2514] | Loss: 0.0128
+  Batch [400/2514] | Loss: 0.0125
+  Batch [450/2514] | Loss: 0.0124
+  Batch [500/2514] | Loss: 0.0122
+  Batch [550/2514] | Loss: 0.0121
+  Batch [600/2514] | Loss: 0.0122
+  Batch [650/2514] | Loss: 0.0123
+  Batch [700/2514] | Loss: 0.0124
+  Batch [750/2514] | Loss: 0.0122
+  Batch [800/2514] | Loss: 0.0122
+  Batch [850/2514] | Loss: 0.0122
+  Batch [900/2514] | Loss: 0.0123
+  Batch [950/2514] | Loss: 0.0123
+  Batch [1000/2514] | Loss: 0.0122
+  Batch [1050/2514] | Loss: 0.0124
+  Batch [1100/2514] | Loss: 0.0124
+  Batch [1150/2514] | Loss: 0.0125
+  Batch [1200/2514] | Loss: 0.0123
+  Batch [1250/2514] | Loss: 0.0122
+  Batch [1300/2514] | Loss: 0.0121
+  Batch [1350/2514] | Loss: 0.0121
+  Batch [1400/2514] | Loss: 0.0121
+  Batch [1450/2514] | Loss: 0.0121
+  Batch [1500/2514] | Loss: 0.0121
+  Batch [1550/2514] | Loss: 0.0122
+  Batch [1600/2514] | Loss: 0.0122
+  Batch [1650/2514] | Loss: 0.0121
+  Batch [1700/2514] | Loss: 0.0121
+  Batch [1750/2514] | Loss: 0.0121
+  Batch [1800/2514] | Loss: 0.0120
+  Batch [1850/2514] | Loss: 0.0120
+  Batch [1900/2514] | Loss: 0.0119
+  Batch [1950/2514] | Loss: 0.0119
+  Batch [2000/2514] | Loss: 0.0119
+  Batch [2050/2514] | Loss: 0.0120
+  Batch [2100/2514] | Loss: 0.0120
+  Batch [2150/2514] | Loss: 0.0121
+  Batch [2200/2514] | Loss: 0.0121
+  Batch [2250/2514] | Loss: 0.0121
+  Batch [2300/2514] | Loss: 0.0121
+  Batch [2350/2514] | Loss: 0.0121
+  Batch [2400/2514] | Loss: 0.0121
+  Batch [2450/2514] | Loss: 0.0121
+  Batch [2500/2514] | Loss: 0.0122
+
+Train Results:
+  Loss: 0.0122 | Dice: 0.6862 | Dice_pos: 0.5142 | Dice_neg: 0.8805 | IoU: 0.4114
+  Per-Class Metrics:
+    Class 1: Dice=0.9283, IoU=0.9283, Prec=1.0000, Recall=0.9283, ClsAcc=0.9283, ClsF1=0.7371
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9240
+    Class 3: Dice=0.7476, IoU=0.6997, Prec=0.8422, Recall=0.8277, ClsAcc=0.8782, ClsF1=0.8172
+    Class 4: Dice=0.9519, IoU=0.9442, Prec=0.9665, Recall=0.9743, ClsAcc=0.9710, ClsF1=0.9091
+  Time: 442.1s
+
+================================================================================
+Fold 0 | Epoch 12/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0169
+  Batch [100/629] | Loss: 0.0153
+  Batch [150/629] | Loss: 0.0154
+  Batch [200/629] | Loss: 0.0148
+  Batch [250/629] | Loss: 0.0153
+  Batch [300/629] | Loss: 0.0147
+  Batch [350/629] | Loss: 0.0145
+  Batch [400/629] | Loss: 0.0149
+  Batch [450/629] | Loss: 0.0150
+  Batch [500/629] | Loss: 0.0147
+  Batch [550/629] | Loss: 0.0147
+  Batch [600/629] | Loss: 0.0145
+
+Validation Results:
+  Loss: 0.0145 | Dice: 0.6699 | Dice_pos: 0.4277 | Dice_neg: 0.9433 | IoU: 0.3338
+  Per-Class Metrics:
+    Class 1: Dice=0.9300, IoU=0.9300, Prec=1.0000, Recall=0.9300, ClsAcc=0.9300, ClsF1=0.7440
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7378, IoU=0.6947, Prec=0.9051, Recall=0.7651, ClsAcc=0.8804, ClsF1=0.8141
+    Class 4: Dice=0.9627, IoU=0.9555, Prec=0.9858, Recall=0.9659, ClsAcc=0.9841, ClsF1=0.9459
+  Time: 186.2s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_12.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.6961 | Best Loss: 0.0127
+
+================================================================================
+Fold 0 | Epoch 13/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0125
+  Batch [100/2514] | Loss: 0.0127
+  Batch [150/2514] | Loss: 0.0117
+  Batch [200/2514] | Loss: 0.0119
+  Batch [250/2514] | Loss: 0.0117
+  Batch [300/2514] | Loss: 0.0116
+  Batch [350/2514] | Loss: 0.0116
+  Batch [400/2514] | Loss: 0.0115
+  Batch [450/2514] | Loss: 0.0121
+  Batch [500/2514] | Loss: 0.0120
+  Batch [550/2514] | Loss: 0.0119
+  Batch [600/2514] | Loss: 0.0119
+  Batch [650/2514] | Loss: 0.0121
+  Batch [700/2514] | Loss: 0.0123
+  Batch [750/2514] | Loss: 0.0124
+  Batch [800/2514] | Loss: 0.0124
+  Batch [850/2514] | Loss: 0.0124
+  Batch [900/2514] | Loss: 0.0123
+  Batch [950/2514] | Loss: 0.0121
+  Batch [1000/2514] | Loss: 0.0120
+  Batch [1050/2514] | Loss: 0.0123
+  Batch [1100/2514] | Loss: 0.0124
+  Batch [1150/2514] | Loss: 0.0123
+  Batch [1200/2514] | Loss: 0.0124
+  Batch [1250/2514] | Loss: 0.0123
+  Batch [1300/2514] | Loss: 0.0124
+  Batch [1350/2514] | Loss: 0.0123
+  Batch [1400/2514] | Loss: 0.0123
+  Batch [1450/2514] | Loss: 0.0124
+  Batch [1500/2514] | Loss: 0.0124
+  Batch [1550/2514] | Loss: 0.0124
+  Batch [1600/2514] | Loss: 0.0124
+  Batch [1650/2514] | Loss: 0.0124
+  Batch [1700/2514] | Loss: 0.0123
+  Batch [1750/2514] | Loss: 0.0124
+  Batch [1800/2514] | Loss: 0.0123
+  Batch [1850/2514] | Loss: 0.0122
+  Batch [1900/2514] | Loss: 0.0121
+  Batch [1950/2514] | Loss: 0.0121
+  Batch [2000/2514] | Loss: 0.0120
+  Batch [2050/2514] | Loss: 0.0121
+  Batch [2100/2514] | Loss: 0.0121
+  Batch [2150/2514] | Loss: 0.0120
+  Batch [2200/2514] | Loss: 0.0120
+  Batch [2250/2514] | Loss: 0.0120
+  Batch [2300/2514] | Loss: 0.0121
+  Batch [2350/2514] | Loss: 0.0121
+  Batch [2400/2514] | Loss: 0.0122
+  Batch [2450/2514] | Loss: 0.0123
+  Batch [2500/2514] | Loss: 0.0122
+
+Train Results:
+  Loss: 0.0122 | Dice: 0.6863 | Dice_pos: 0.5102 | Dice_neg: 0.8852 | IoU: 0.4074
+  Per-Class Metrics:
+    Class 1: Dice=0.9276, IoU=0.9276, Prec=0.9994, Recall=0.9282, ClsAcc=0.9277, ClsF1=0.7369
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9220
+    Class 3: Dice=0.7464, IoU=0.6983, Prec=0.8448, Recall=0.8251, ClsAcc=0.8778, ClsF1=0.8222
+    Class 4: Dice=0.9547, IoU=0.9473, Prec=0.9709, Recall=0.9731, ClsAcc=0.9733, ClsF1=0.9162
+  Time: 448.4s
+
+================================================================================
+Fold 0 | Epoch 13/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0148
+  Batch [100/629] | Loss: 0.0139
+  Batch [150/629] | Loss: 0.0135
+  Batch [200/629] | Loss: 0.0128
+  Batch [250/629] | Loss: 0.0136
+  Batch [300/629] | Loss: 0.0132
+  Batch [350/629] | Loss: 0.0130
+  Batch [400/629] | Loss: 0.0132
+  Batch [450/629] | Loss: 0.0133
+  Batch [500/629] | Loss: 0.0131
+  Batch [550/629] | Loss: 0.0131
+  Batch [600/629] | Loss: 0.0130
+
+Validation Results:
+  Loss: 0.0130 | Dice: 0.6876 | Dice_pos: 0.4933 | Dice_neg: 0.9069 | IoU: 0.3940
+  Per-Class Metrics:
+    Class 1: Dice=0.9300, IoU=0.9300, Prec=1.0000, Recall=0.9300, ClsAcc=0.9300, ClsF1=0.7440
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7503, IoU=0.7031, Prec=0.8618, Recall=0.8136, ClsAcc=0.8800, ClsF1=0.8215
+    Class 4: Dice=0.9523, IoU=0.9454, Prec=0.9850, Recall=0.9588, ClsAcc=0.9777, ClsF1=0.9225
+  Time: 237.3s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_13.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.6961 | Best Loss: 0.0127
+
+================================================================================
+Fold 0 | Epoch 14/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0116
+  Batch [100/2514] | Loss: 0.0125
+  Batch [150/2514] | Loss: 0.0129
+  Batch [200/2514] | Loss: 0.0129
+  Batch [250/2514] | Loss: 0.0129
+  Batch [300/2514] | Loss: 0.0125
+  Batch [350/2514] | Loss: 0.0122
+  Batch [400/2514] | Loss: 0.0124
+  Batch [450/2514] | Loss: 0.0123
+  Batch [500/2514] | Loss: 0.0121
+  Batch [550/2514] | Loss: 0.0117
+  Batch [600/2514] | Loss: 0.0116
+  Batch [650/2514] | Loss: 0.0113
+  Batch [700/2514] | Loss: 0.0113
+  Batch [750/2514] | Loss: 0.0114
+  Batch [800/2514] | Loss: 0.0114
+  Batch [850/2514] | Loss: 0.0114
+  Batch [900/2514] | Loss: 0.0114
+  Batch [950/2514] | Loss: 0.0114
+  Batch [1000/2514] | Loss: 0.0113
+  Batch [1050/2514] | Loss: 0.0114
+  Batch [1100/2514] | Loss: 0.0114
+  Batch [1150/2514] | Loss: 0.0113
+  Batch [1200/2514] | Loss: 0.0113
+  Batch [1250/2514] | Loss: 0.0113
+  Batch [1300/2514] | Loss: 0.0113
+  Batch [1350/2514] | Loss: 0.0114
+  Batch [1400/2514] | Loss: 0.0115
+  Batch [1450/2514] | Loss: 0.0114
+  Batch [1500/2514] | Loss: 0.0116
+  Batch [1550/2514] | Loss: 0.0115
+  Batch [1600/2514] | Loss: 0.0116
+  Batch [1650/2514] | Loss: 0.0117
+  Batch [1700/2514] | Loss: 0.0117
+  Batch [1750/2514] | Loss: 0.0117
+  Batch [1800/2514] | Loss: 0.0116
+  Batch [1850/2514] | Loss: 0.0116
+  Batch [1900/2514] | Loss: 0.0116
+  Batch [1950/2514] | Loss: 0.0117
+  Batch [2000/2514] | Loss: 0.0117
+  Batch [2050/2514] | Loss: 0.0118
+  Batch [2100/2514] | Loss: 0.0118
+  Batch [2150/2514] | Loss: 0.0117
+  Batch [2200/2514] | Loss: 0.0117
+  Batch [2250/2514] | Loss: 0.0118
+  Batch [2300/2514] | Loss: 0.0118
+  Batch [2350/2514] | Loss: 0.0118
+  Batch [2400/2514] | Loss: 0.0117
+  Batch [2450/2514] | Loss: 0.0116
+  Batch [2500/2514] | Loss: 0.0116
+
+Train Results:
+  Loss: 0.0116 | Dice: 0.6931 | Dice_pos: 0.5247 | Dice_neg: 0.8833 | IoU: 0.4219
+  Per-Class Metrics:
+    Class 1: Dice=0.9249, IoU=0.9247, Prec=0.9953, Recall=0.9285, ClsAcc=0.9296, ClsF1=0.7507
+    Class 2: Dice=0.9801, IoU=0.9801, Prec=1.0000, Recall=0.9801, ClsAcc=0.9801, ClsF1=0.9232
+    Class 3: Dice=0.7564, IoU=0.7080, Prec=0.8460, Recall=0.8328, ClsAcc=0.8862, ClsF1=0.8371
+    Class 4: Dice=0.9557, IoU=0.9482, Prec=0.9693, Recall=0.9756, ClsAcc=0.9733, ClsF1=0.9161
+  Time: 433.6s
+
+================================================================================
+Fold 0 | Epoch 14/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0130
+  Batch [100/629] | Loss: 0.0125
+  Batch [150/629] | Loss: 0.0121
+  Batch [200/629] | Loss: 0.0114
+  Batch [250/629] | Loss: 0.0122
+  Batch [300/629] | Loss: 0.0118
+  Batch [350/629] | Loss: 0.0117
+  Batch [400/629] | Loss: 0.0120
+  Batch [450/629] | Loss: 0.0122
+  Batch [500/629] | Loss: 0.0120
+  Batch [550/629] | Loss: 0.0120
+  Batch [600/629] | Loss: 0.0120
+
+Validation Results:
+  Loss: 0.0120 | Dice: 0.7103 | Dice_pos: 0.5144 | Dice_neg: 0.9314 | IoU: 0.4115
+  Per-Class Metrics:
+    Class 1: Dice=0.9237, IoU=0.9232, Prec=0.9922, Recall=0.9307, ClsAcc=0.9364, ClsF1=0.7705
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7672, IoU=0.7193, Prec=0.8722, Recall=0.8211, ClsAcc=0.8963, ClsF1=0.8413
+    Class 4: Dice=0.9642, IoU=0.9572, Prec=0.9901, Recall=0.9639, ClsAcc=0.9877, ClsF1=0.9573
+  Time: 445.5s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_14.pth
+  *** New best model saved: outputs_20260111_205115/fold_0/best_model.pth ***
+
+  Current LR: 5.00e-04 | Best Dice: 0.7103 | Best Loss: 0.0120
+
+================================================================================
+Fold 0 | Epoch 15/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0106
+  Batch [100/2514] | Loss: 0.0097
+  Batch [150/2514] | Loss: 0.0098
+  Batch [200/2514] | Loss: 0.0105
+  Batch [250/2514] | Loss: 0.0109
+  Batch [300/2514] | Loss: 0.0110
+  Batch [350/2514] | Loss: 0.0109
+  Batch [400/2514] | Loss: 0.0110
+  Batch [450/2514] | Loss: 0.0108
+  Batch [500/2514] | Loss: 0.0109
+  Batch [550/2514] | Loss: 0.0110
+  Batch [600/2514] | Loss: 0.0114
+  Batch [650/2514] | Loss: 0.0113
+  Batch [700/2514] | Loss: 0.0113
+  Batch [750/2514] | Loss: 0.0113
+  Batch [800/2514] | Loss: 0.0115
+  Batch [850/2514] | Loss: 0.0115
+  Batch [900/2514] | Loss: 0.0115
+  Batch [950/2514] | Loss: 0.0115
+  Batch [1000/2514] | Loss: 0.0114
+  Batch [1050/2514] | Loss: 0.0114
+  Batch [1100/2514] | Loss: 0.0114
+  Batch [1150/2514] | Loss: 0.0113
+  Batch [1200/2514] | Loss: 0.0112
+  Batch [1250/2514] | Loss: 0.0112
+  Batch [1300/2514] | Loss: 0.0111
+  Batch [1350/2514] | Loss: 0.0111
+  Batch [1400/2514] | Loss: 0.0110
+  Batch [1450/2514] | Loss: 0.0110
+  Batch [1500/2514] | Loss: 0.0110
+  Batch [1550/2514] | Loss: 0.0110
+  Batch [1600/2514] | Loss: 0.0111
+  Batch [1650/2514] | Loss: 0.0111
+  Batch [1700/2514] | Loss: 0.0110
+  Batch [1750/2514] | Loss: 0.0110
+  Batch [1800/2514] | Loss: 0.0111
+  Batch [1850/2514] | Loss: 0.0110
+  Batch [1900/2514] | Loss: 0.0111
+  Batch [1950/2514] | Loss: 0.0112
+  Batch [2000/2514] | Loss: 0.0112
+  Batch [2050/2514] | Loss: 0.0112
+  Batch [2100/2514] | Loss: 0.0112
+  Batch [2150/2514] | Loss: 0.0113
+  Batch [2200/2514] | Loss: 0.0113
+  Batch [2250/2514] | Loss: 0.0113
+  Batch [2300/2514] | Loss: 0.0113
+  Batch [2350/2514] | Loss: 0.0114
+  Batch [2400/2514] | Loss: 0.0114
+  Batch [2450/2514] | Loss: 0.0114
+  Batch [2500/2514] | Loss: 0.0114
+
+Train Results:
+  Loss: 0.0114 | Dice: 0.6945 | Dice_pos: 0.5354 | Dice_neg: 0.8742 | IoU: 0.4276
+  Per-Class Metrics:
+    Class 1: Dice=0.9176, IoU=0.9165, Prec=0.9846, Recall=0.9301, ClsAcc=0.9360, ClsF1=0.7724
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9236
+    Class 3: Dice=0.7582, IoU=0.7099, Prec=0.8463, Recall=0.8349, ClsAcc=0.8868, ClsF1=0.8293
+    Class 4: Dice=0.9593, IoU=0.9516, Prec=0.9716, Recall=0.9769, ClsAcc=0.9764, ClsF1=0.9293
+  Time: 438.2s
+
+================================================================================
+Fold 0 | Epoch 15/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0148
+  Batch [100/629] | Loss: 0.0133
+  Batch [150/629] | Loss: 0.0132
+  Batch [200/629] | Loss: 0.0126
+  Batch [250/629] | Loss: 0.0132
+  Batch [300/629] | Loss: 0.0129
+  Batch [350/629] | Loss: 0.0129
+  Batch [400/629] | Loss: 0.0132
+  Batch [450/629] | Loss: 0.0133
+  Batch [500/629] | Loss: 0.0131
+  Batch [550/629] | Loss: 0.0132
+  Batch [600/629] | Loss: 0.0131
+
+Validation Results:
+  Loss: 0.0131 | Dice: 0.6802 | Dice_pos: 0.4615 | Dice_neg: 0.9272 | IoU: 0.3652
+  Per-Class Metrics:
+    Class 1: Dice=0.9158, IoU=0.9154, Prec=0.9849, Recall=0.9305, ClsAcc=0.9241, ClsF1=0.7424
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7502, IoU=0.7047, Prec=0.8797, Recall=0.7941, ClsAcc=0.8863, ClsF1=0.8304
+    Class 4: Dice=0.9582, IoU=0.9523, Prec=0.9946, Recall=0.9563, ClsAcc=0.9817, ClsF1=0.9371
+  Time: 540.6s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_15.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.7103 | Best Loss: 0.0120
+
+================================================================================
+Fold 0 | Epoch 16/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0115
+  Batch [100/2514] | Loss: 0.0136
+  Batch [150/2514] | Loss: 0.0133
+  Batch [200/2514] | Loss: 0.0127
+  Batch [250/2514] | Loss: 0.0123
+  Batch [300/2514] | Loss: 0.0120
+  Batch [350/2514] | Loss: 0.0120
+  Batch [400/2514] | Loss: 0.0116
+  Batch [450/2514] | Loss: 0.0115
+  Batch [500/2514] | Loss: 0.0115
+  Batch [550/2514] | Loss: 0.0115
+  Batch [600/2514] | Loss: 0.0114
+  Batch [650/2514] | Loss: 0.0114
+  Batch [700/2514] | Loss: 0.0111
+  Batch [750/2514] | Loss: 0.0111
+  Batch [800/2514] | Loss: 0.0110
+  Batch [850/2514] | Loss: 0.0109
+  Batch [900/2514] | Loss: 0.0109
+  Batch [950/2514] | Loss: 0.0108
+  Batch [1000/2514] | Loss: 0.0107
+  Batch [1050/2514] | Loss: 0.0107
+  Batch [1100/2514] | Loss: 0.0107
+  Batch [1150/2514] | Loss: 0.0107
+  Batch [1200/2514] | Loss: 0.0108
+  Batch [1250/2514] | Loss: 0.0108
+  Batch [1300/2514] | Loss: 0.0108
+  Batch [1350/2514] | Loss: 0.0110
+  Batch [1400/2514] | Loss: 0.0109
+  Batch [1450/2514] | Loss: 0.0109
+  Batch [1500/2514] | Loss: 0.0109
+  Batch [1550/2514] | Loss: 0.0110
+  Batch [1600/2514] | Loss: 0.0110
+  Batch [1650/2514] | Loss: 0.0109
+  Batch [1700/2514] | Loss: 0.0109
+  Batch [1750/2514] | Loss: 0.0109
+  Batch [1800/2514] | Loss: 0.0109
+  Batch [1850/2514] | Loss: 0.0108
+  Batch [1900/2514] | Loss: 0.0109
+  Batch [1950/2514] | Loss: 0.0109
+  Batch [2000/2514] | Loss: 0.0110
+  Batch [2050/2514] | Loss: 0.0110
+  Batch [2100/2514] | Loss: 0.0110
+  Batch [2150/2514] | Loss: 0.0110
+  Batch [2200/2514] | Loss: 0.0111
+  Batch [2250/2514] | Loss: 0.0111
+  Batch [2300/2514] | Loss: 0.0111
+  Batch [2350/2514] | Loss: 0.0111
+  Batch [2400/2514] | Loss: 0.0111
+  Batch [2450/2514] | Loss: 0.0111
+  Batch [2500/2514] | Loss: 0.0111
+
+Train Results:
+  Loss: 0.0111 | Dice: 0.7039 | Dice_pos: 0.5469 | Dice_neg: 0.8812 | IoU: 0.4394
+  Per-Class Metrics:
+    Class 1: Dice=0.9124, IoU=0.9097, Prec=0.9736, Recall=0.9336, ClsAcc=0.9367, ClsF1=0.7827
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9228
+    Class 3: Dice=0.7658, IoU=0.7175, Prec=0.8542, Recall=0.8365, ClsAcc=0.8920, ClsF1=0.8362
+    Class 4: Dice=0.9582, IoU=0.9506, Prec=0.9705, Recall=0.9768, ClsAcc=0.9761, ClsF1=0.9258
+  Time: 437.5s
+
+================================================================================
+Fold 0 | Epoch 16/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0148
+  Batch [100/629] | Loss: 0.0136
+  Batch [150/629] | Loss: 0.0136
+  Batch [200/629] | Loss: 0.0131
+  Batch [250/629] | Loss: 0.0139
+  Batch [300/629] | Loss: 0.0134
+  Batch [350/629] | Loss: 0.0132
+  Batch [400/629] | Loss: 0.0136
+  Batch [450/629] | Loss: 0.0137
+  Batch [500/629] | Loss: 0.0135
+  Batch [550/629] | Loss: 0.0134
+  Batch [600/629] | Loss: 0.0133
+
+Validation Results:
+  Loss: 0.0133 | Dice: 0.6956 | Dice_pos: 0.4859 | Dice_neg: 0.9323 | IoU: 0.3785
+  Per-Class Metrics:
+    Class 1: Dice=0.9097, IoU=0.9057, Prec=0.9652, Recall=0.9387, ClsAcc=0.9364, ClsF1=0.7901
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7546, IoU=0.7080, Prec=0.8928, Recall=0.7883, ClsAcc=0.8955, ClsF1=0.8482
+    Class 4: Dice=0.9623, IoU=0.9555, Prec=0.9941, Recall=0.9593, ClsAcc=0.9857, ClsF1=0.9542
+  Time: 392.8s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_16.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.7103 | Best Loss: 0.0120
+
+================================================================================
+Fold 0 | Epoch 17/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0118
+  Batch [100/2514] | Loss: 0.0126
+  Batch [150/2514] | Loss: 0.0117
+  Batch [200/2514] | Loss: 0.0114
+  Batch [250/2514] | Loss: 0.0110
+  Batch [300/2514] | Loss: 0.0108
+  Batch [350/2514] | Loss: 0.0103
+  Batch [400/2514] | Loss: 0.0102
+  Batch [450/2514] | Loss: 0.0107
+  Batch [500/2514] | Loss: 0.0109
+  Batch [550/2514] | Loss: 0.0108
+  Batch [600/2514] | Loss: 0.0110
+  Batch [650/2514] | Loss: 0.0110
+  Batch [700/2514] | Loss: 0.0110
+  Batch [750/2514] | Loss: 0.0112
+  Batch [800/2514] | Loss: 0.0111
+  Batch [850/2514] | Loss: 0.0113
+  Batch [900/2514] | Loss: 0.0112
+  Batch [950/2514] | Loss: 0.0110
+  Batch [1000/2514] | Loss: 0.0109
+  Batch [1050/2514] | Loss: 0.0109
+  Batch [1100/2514] | Loss: 0.0111
+  Batch [1150/2514] | Loss: 0.0111
+  Batch [1200/2514] | Loss: 0.0111
+  Batch [1250/2514] | Loss: 0.0111
+  Batch [1300/2514] | Loss: 0.0111
+  Batch [1350/2514] | Loss: 0.0111
+  Batch [1400/2514] | Loss: 0.0110
+  Batch [1450/2514] | Loss: 0.0110
+  Batch [1500/2514] | Loss: 0.0109
+  Batch [1550/2514] | Loss: 0.0109
+  Batch [1600/2514] | Loss: 0.0109
+  Batch [1650/2514] | Loss: 0.0110
+  Batch [1700/2514] | Loss: 0.0110
+  Batch [1750/2514] | Loss: 0.0109
+  Batch [1800/2514] | Loss: 0.0109
+  Batch [1850/2514] | Loss: 0.0109
+  Batch [1900/2514] | Loss: 0.0110
+  Batch [1950/2514] | Loss: 0.0109
+  Batch [2000/2514] | Loss: 0.0109
+  Batch [2050/2514] | Loss: 0.0109
+  Batch [2100/2514] | Loss: 0.0109
+  Batch [2150/2514] | Loss: 0.0109
+  Batch [2200/2514] | Loss: 0.0110
+  Batch [2250/2514] | Loss: 0.0110
+  Batch [2300/2514] | Loss: 0.0110
+  Batch [2350/2514] | Loss: 0.0111
+  Batch [2400/2514] | Loss: 0.0111
+  Batch [2450/2514] | Loss: 0.0111
+  Batch [2500/2514] | Loss: 0.0111
+
+Train Results:
+  Loss: 0.0111 | Dice: 0.7077 | Dice_pos: 0.5555 | Dice_neg: 0.8797 | IoU: 0.4451
+  Per-Class Metrics:
+    Class 1: Dice=0.9091, IoU=0.9052, Prec=0.9652, Recall=0.9367, ClsAcc=0.9364, ClsF1=0.7917
+    Class 2: Dice=0.9801, IoU=0.9801, Prec=1.0000, Recall=0.9801, ClsAcc=0.9801, ClsF1=0.9224
+    Class 3: Dice=0.7673, IoU=0.7187, Prec=0.8509, Recall=0.8393, ClsAcc=0.8934, ClsF1=0.8423
+    Class 4: Dice=0.9593, IoU=0.9518, Prec=0.9723, Recall=0.9762, ClsAcc=0.9768, ClsF1=0.9267
+  Time: 456.7s
+
+================================================================================
+Fold 0 | Epoch 17/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0127
+  Batch [100/629] | Loss: 0.0121
+  Batch [150/629] | Loss: 0.0116
+  Batch [200/629] | Loss: 0.0111
+  Batch [250/629] | Loss: 0.0118
+  Batch [300/629] | Loss: 0.0114
+  Batch [350/629] | Loss: 0.0114
+  Batch [400/629] | Loss: 0.0115
+  Batch [450/629] | Loss: 0.0116
+  Batch [500/629] | Loss: 0.0115
+  Batch [550/629] | Loss: 0.0114
+  Batch [600/629] | Loss: 0.0114
+
+Validation Results:
+  Loss: 0.0114 | Dice: 0.7132 | Dice_pos: 0.5612 | Dice_neg: 0.8848 | IoU: 0.4513
+  Per-Class Metrics:
+    Class 1: Dice=0.9294, IoU=0.9251, Prec=0.9837, Recall=0.9389, ClsAcc=0.9579, ClsF1=0.8567
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7638, IoU=0.7153, Prec=0.8502, Recall=0.8351, ClsAcc=0.8875, ClsF1=0.8308
+    Class 4: Dice=0.9553, IoU=0.9480, Prec=0.9715, Recall=0.9730, ClsAcc=0.9734, ClsF1=0.9146
+  Time: 370.3s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_17.pth
+  *** New best model saved: outputs_20260111_205115/fold_0/best_model.pth ***
+
+  Current LR: 5.00e-04 | Best Dice: 0.7132 | Best Loss: 0.0114
+
+================================================================================
+Fold 0 | Epoch 18/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0096
+  Batch [100/2514] | Loss: 0.0087
+  Batch [150/2514] | Loss: 0.0095
+  Batch [200/2514] | Loss: 0.0099
+  Batch [250/2514] | Loss: 0.0097
+  Batch [300/2514] | Loss: 0.0094
+  Batch [350/2514] | Loss: 0.0097
+  Batch [400/2514] | Loss: 0.0095
+  Batch [450/2514] | Loss: 0.0098
+  Batch [500/2514] | Loss: 0.0098
+  Batch [550/2514] | Loss: 0.0099
+  Batch [600/2514] | Loss: 0.0100
+  Batch [650/2514] | Loss: 0.0101
+  Batch [700/2514] | Loss: 0.0100
+  Batch [750/2514] | Loss: 0.0100
+  Batch [800/2514] | Loss: 0.0101
+  Batch [850/2514] | Loss: 0.0101
+  Batch [900/2514] | Loss: 0.0102
+  Batch [950/2514] | Loss: 0.0102
+  Batch [1000/2514] | Loss: 0.0101
+  Batch [1050/2514] | Loss: 0.0101
+  Batch [1100/2514] | Loss: 0.0101
+  Batch [1150/2514] | Loss: 0.0101
+  Batch [1200/2514] | Loss: 0.0100
+  Batch [1250/2514] | Loss: 0.0101
+  Batch [1300/2514] | Loss: 0.0101
+  Batch [1350/2514] | Loss: 0.0101
+  Batch [1400/2514] | Loss: 0.0104
+  Batch [1450/2514] | Loss: 0.0104
+  Batch [1500/2514] | Loss: 0.0104
+  Batch [1550/2514] | Loss: 0.0104
+  Batch [1600/2514] | Loss: 0.0104
+  Batch [1650/2514] | Loss: 0.0104
+  Batch [1700/2514] | Loss: 0.0104
+  Batch [1750/2514] | Loss: 0.0104
+  Batch [1800/2514] | Loss: 0.0105
+  Batch [1850/2514] | Loss: 0.0105
+  Batch [1900/2514] | Loss: 0.0106
+  Batch [1950/2514] | Loss: 0.0107
+  Batch [2000/2514] | Loss: 0.0106
+  Batch [2050/2514] | Loss: 0.0107
+  Batch [2100/2514] | Loss: 0.0107
+  Batch [2150/2514] | Loss: 0.0107
+  Batch [2200/2514] | Loss: 0.0107
+  Batch [2250/2514] | Loss: 0.0107
+  Batch [2300/2514] | Loss: 0.0107
+  Batch [2350/2514] | Loss: 0.0107
+  Batch [2400/2514] | Loss: 0.0107
+  Batch [2450/2514] | Loss: 0.0107
+  Batch [2500/2514] | Loss: 0.0107
+
+Train Results:
+  Loss: 0.0107 | Dice: 0.7119 | Dice_pos: 0.5677 | Dice_neg: 0.8748 | IoU: 0.4564
+  Per-Class Metrics:
+    Class 1: Dice=0.9098, IoU=0.9048, Prec=0.9607, Recall=0.9398, ClsAcc=0.9402, ClsF1=0.7982
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9232
+    Class 3: Dice=0.7688, IoU=0.7204, Prec=0.8520, Recall=0.8403, ClsAcc=0.8943, ClsF1=0.8444
+    Class 4: Dice=0.9630, IoU=0.9553, Prec=0.9743, Recall=0.9779, ClsAcc=0.9799, ClsF1=0.9388
+  Time: 436.6s
+
+================================================================================
+Fold 0 | Epoch 18/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0128
+  Batch [100/629] | Loss: 0.0121
+  Batch [150/629] | Loss: 0.0118
+  Batch [200/629] | Loss: 0.0114
+  Batch [250/629] | Loss: 0.0120
+  Batch [300/629] | Loss: 0.0117
+  Batch [350/629] | Loss: 0.0116
+  Batch [400/629] | Loss: 0.0117
+  Batch [450/629] | Loss: 0.0117
+  Batch [500/629] | Loss: 0.0117
+  Batch [550/629] | Loss: 0.0116
+  Batch [600/629] | Loss: 0.0116
+
+Validation Results:
+  Loss: 0.0116 | Dice: 0.7066 | Dice_pos: 0.5825 | Dice_neg: 0.8467 | IoU: 0.4646
+  Per-Class Metrics:
+    Class 1: Dice=0.9167, IoU=0.9102, Prec=0.9550, Recall=0.9488, ClsAcc=0.9455, ClsF1=0.8271
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7562, IoU=0.7074, Prec=0.8376, Recall=0.8392, ClsAcc=0.8828, ClsF1=0.8293
+    Class 4: Dice=0.9510, IoU=0.9433, Prec=0.9628, Recall=0.9762, ClsAcc=0.9694, ClsF1=0.9021
+  Time: 512.0s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_18.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.7132 | Best Loss: 0.0114
+
+================================================================================
+Fold 0 | Epoch 19/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0101
+  Batch [100/2514] | Loss: 0.0096
+  Batch [150/2514] | Loss: 0.0102
+  Batch [200/2514] | Loss: 0.0104
+  Batch [250/2514] | Loss: 0.0104
+  Batch [300/2514] | Loss: 0.0100
+  Batch [350/2514] | Loss: 0.0099
+  Batch [400/2514] | Loss: 0.0101
+  Batch [450/2514] | Loss: 0.0101
+  Batch [500/2514] | Loss: 0.0101
+  Batch [550/2514] | Loss: 0.0101
+  Batch [600/2514] | Loss: 0.0102
+  Batch [650/2514] | Loss: 0.0105
+  Batch [700/2514] | Loss: 0.0104
+  Batch [750/2514] | Loss: 0.0105
+  Batch [800/2514] | Loss: 0.0104
+  Batch [850/2514] | Loss: 0.0104
+  Batch [900/2514] | Loss: 0.0103
+  Batch [950/2514] | Loss: 0.0104
+  Batch [1000/2514] | Loss: 0.0104
+  Batch [1050/2514] | Loss: 0.0107
+  Batch [1100/2514] | Loss: 0.0109
+  Batch [1150/2514] | Loss: 0.0110
+  Batch [1200/2514] | Loss: 0.0110
+  Batch [1250/2514] | Loss: 0.0109
+  Batch [1300/2514] | Loss: 0.0109
+  Batch [1350/2514] | Loss: 0.0110
+  Batch [1400/2514] | Loss: 0.0109
+  Batch [1450/2514] | Loss: 0.0108
+  Batch [1500/2514] | Loss: 0.0109
+  Batch [1550/2514] | Loss: 0.0109
+  Batch [1600/2514] | Loss: 0.0109
+  Batch [1650/2514] | Loss: 0.0109
+  Batch [1700/2514] | Loss: 0.0109
+  Batch [1750/2514] | Loss: 0.0108
+  Batch [1800/2514] | Loss: 0.0108
+  Batch [1850/2514] | Loss: 0.0107
+  Batch [1900/2514] | Loss: 0.0107
+  Batch [1950/2514] | Loss: 0.0107
+  Batch [2000/2514] | Loss: 0.0107
+  Batch [2050/2514] | Loss: 0.0106
+  Batch [2100/2514] | Loss: 0.0106
+  Batch [2150/2514] | Loss: 0.0106
+  Batch [2200/2514] | Loss: 0.0106
+  Batch [2250/2514] | Loss: 0.0106
+  Batch [2300/2514] | Loss: 0.0106
+  Batch [2350/2514] | Loss: 0.0106
+  Batch [2400/2514] | Loss: 0.0105
+  Batch [2450/2514] | Loss: 0.0105
+  Batch [2500/2514] | Loss: 0.0106
+
+Train Results:
+  Loss: 0.0106 | Dice: 0.7132 | Dice_pos: 0.5737 | Dice_neg: 0.8708 | IoU: 0.4636
+  Per-Class Metrics:
+    Class 1: Dice=0.9071, IoU=0.9017, Prec=0.9547, Recall=0.9423, ClsAcc=0.9370, ClsF1=0.7874
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9220
+    Class 3: Dice=0.7717, IoU=0.7234, Prec=0.8543, Recall=0.8420, ClsAcc=0.8946, ClsF1=0.8420
+    Class 4: Dice=0.9618, IoU=0.9543, Prec=0.9739, Recall=0.9776, ClsAcc=0.9791, ClsF1=0.9348
+  Time: 441.5s
+
+================================================================================
+Fold 0 | Epoch 19/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0127
+  Batch [100/629] | Loss: 0.0119
+  Batch [150/629] | Loss: 0.0119
+  Batch [200/629] | Loss: 0.0118
+  Batch [250/629] | Loss: 0.0122
+  Batch [300/629] | Loss: 0.0120
+  Batch [350/629] | Loss: 0.0119
+  Batch [400/629] | Loss: 0.0123
+  Batch [450/629] | Loss: 0.0124
+  Batch [500/629] | Loss: 0.0124
+  Batch [550/629] | Loss: 0.0124
+  Batch [600/629] | Loss: 0.0123
+
+Validation Results:
+  Loss: 0.0123 | Dice: 0.7104 | Dice_pos: 0.5416 | Dice_neg: 0.9009 | IoU: 0.4319
+  Per-Class Metrics:
+    Class 1: Dice=0.9282, IoU=0.9236, Prec=0.9806, Recall=0.9399, ClsAcc=0.9559, ClsF1=0.8527
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7675, IoU=0.7194, Prec=0.8414, Recall=0.8454, ClsAcc=0.8911, ClsF1=0.8308
+    Class 4: Dice=0.9609, IoU=0.9546, Prec=0.9965, Recall=0.9567, ClsAcc=0.9853, ClsF1=0.9491
+  Time: 500.2s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_19.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.7132 | Best Loss: 0.0114
+
+================================================================================
+Fold 0 | Epoch 20/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0089
+  Batch [100/2514] | Loss: 0.0090
+  Batch [150/2514] | Loss: 0.0101
+  Batch [200/2514] | Loss: 0.0100
+  Batch [250/2514] | Loss: 0.0094
+  Batch [300/2514] | Loss: 0.0091
+  Batch [350/2514] | Loss: 0.0093
+  Batch [400/2514] | Loss: 0.0096
+  Batch [450/2514] | Loss: 0.0097
+  Batch [500/2514] | Loss: 0.0099
+  Batch [550/2514] | Loss: 0.0098
+  Batch [600/2514] | Loss: 0.0099
+  Batch [650/2514] | Loss: 0.0097
+  Batch [700/2514] | Loss: 0.0099
+  Batch [750/2514] | Loss: 0.0098
+  Batch [800/2514] | Loss: 0.0099
+  Batch [850/2514] | Loss: 0.0099
+  Batch [900/2514] | Loss: 0.0098
+  Batch [950/2514] | Loss: 0.0102
+  Batch [1000/2514] | Loss: 0.0102
+  Batch [1050/2514] | Loss: 0.0103
+  Batch [1100/2514] | Loss: 0.0104
+  Batch [1150/2514] | Loss: 0.0106
+  Batch [1200/2514] | Loss: 0.0106
+  Batch [1250/2514] | Loss: 0.0106
+  Batch [1300/2514] | Loss: 0.0106
+  Batch [1350/2514] | Loss: 0.0106
+  Batch [1400/2514] | Loss: 0.0106
+  Batch [1450/2514] | Loss: 0.0106
+  Batch [1500/2514] | Loss: 0.0106
+  Batch [1550/2514] | Loss: 0.0106
+  Batch [1600/2514] | Loss: 0.0105
+  Batch [1650/2514] | Loss: 0.0105
+  Batch [1700/2514] | Loss: 0.0105
+  Batch [1750/2514] | Loss: 0.0104
+  Batch [1800/2514] | Loss: 0.0104
+  Batch [1850/2514] | Loss: 0.0104
+  Batch [1900/2514] | Loss: 0.0104
+  Batch [1950/2514] | Loss: 0.0105
+  Batch [2000/2514] | Loss: 0.0104
+  Batch [2050/2514] | Loss: 0.0105
+  Batch [2100/2514] | Loss: 0.0104
+  Batch [2150/2514] | Loss: 0.0104
+  Batch [2200/2514] | Loss: 0.0103
+  Batch [2250/2514] | Loss: 0.0103
+  Batch [2300/2514] | Loss: 0.0102
+  Batch [2350/2514] | Loss: 0.0102
+  Batch [2400/2514] | Loss: 0.0102
+  Batch [2450/2514] | Loss: 0.0102
+  Batch [2500/2514] | Loss: 0.0101
+
+Train Results:
+  Loss: 0.0101 | Dice: 0.7235 | Dice_pos: 0.5895 | Dice_neg: 0.8750 | IoU: 0.4762
+  Per-Class Metrics:
+    Class 1: Dice=0.9092, IoU=0.9025, Prec=0.9509, Recall=0.9465, ClsAcc=0.9391, ClsF1=0.8002
+    Class 2: Dice=0.9802, IoU=0.9802, Prec=1.0000, Recall=0.9802, ClsAcc=0.9802, ClsF1=0.9236
+    Class 3: Dice=0.7795, IoU=0.7311, Prec=0.8590, Recall=0.8454, ClsAcc=0.9013, ClsF1=0.8553
+    Class 4: Dice=0.9650, IoU=0.9575, Prec=0.9754, Recall=0.9794, ClsAcc=0.9810, ClsF1=0.9443
+  Time: 429.3s
+
+================================================================================
+Fold 0 | Epoch 20/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0144
+  Batch [100/629] | Loss: 0.0133
+  Batch [150/629] | Loss: 0.0133
+  Batch [200/629] | Loss: 0.0126
+  Batch [250/629] | Loss: 0.0130
+  Batch [300/629] | Loss: 0.0125
+  Batch [350/629] | Loss: 0.0124
+  Batch [400/629] | Loss: 0.0128
+  Batch [450/629] | Loss: 0.0129
+  Batch [500/629] | Loss: 0.0127
+  Batch [550/629] | Loss: 0.0127
+  Batch [600/629] | Loss: 0.0126
+
+Validation Results:
+  Loss: 0.0125 | Dice: 0.7243 | Dice_pos: 0.5790 | Dice_neg: 0.8882 | IoU: 0.4622
+  Per-Class Metrics:
+    Class 1: Dice=0.9305, IoU=0.9244, Prec=0.9704, Recall=0.9479, ClsAcc=0.9579, ClsF1=0.8589
+    Class 2: Dice=0.9809, IoU=0.9809, Prec=1.0000, Recall=0.9809, ClsAcc=0.9809, ClsF1=0.9285
+    Class 3: Dice=0.7612, IoU=0.7111, Prec=0.8327, Recall=0.8480, ClsAcc=0.8867, ClsF1=0.8309
+    Class 4: Dice=0.9667, IoU=0.9600, Prec=0.9959, Recall=0.9615, ClsAcc=0.9897, ClsF1=0.9640
+  Time: 385.1s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_20.pth
+  *** New best model saved: outputs_20260111_205115/fold_0/best_model.pth ***
+
+  Current LR: 5.00e-04 | Best Dice: 0.7243 | Best Loss: 0.0125
+
+================================================================================
+Fold 0 | Epoch 21/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0083
+  Batch [100/2514] | Loss: 0.0105
+  Batch [150/2514] | Loss: 0.0095
+  Batch [200/2514] | Loss: 0.0095
+  Batch [250/2514] | Loss: 0.0099
+  Batch [300/2514] | Loss: 0.0097
+  Batch [350/2514] | Loss: 0.0100
+  Batch [400/2514] | Loss: 0.0099
+  Batch [450/2514] | Loss: 0.0097
+  Batch [500/2514] | Loss: 0.0095
+  Batch [550/2514] | Loss: 0.0095
+  Batch [600/2514] | Loss: 0.0095
+  Batch [650/2514] | Loss: 0.0098
+  Batch [700/2514] | Loss: 0.0099
+  Batch [750/2514] | Loss: 0.0097
+  Batch [800/2514] | Loss: 0.0098
+  Batch [850/2514] | Loss: 0.0099
+  Batch [900/2514] | Loss: 0.0099
+  Batch [950/2514] | Loss: 0.0100
+  Batch [1000/2514] | Loss: 0.0098
+  Batch [1050/2514] | Loss: 0.0098
+  Batch [1100/2514] | Loss: 0.0099
+  Batch [1150/2514] | Loss: 0.0099
+  Batch [1200/2514] | Loss: 0.0099
+  Batch [1250/2514] | Loss: 0.0098
+  Batch [1300/2514] | Loss: 0.0098
+  Batch [1350/2514] | Loss: 0.0098
+  Batch [1400/2514] | Loss: 0.0098
+  Batch [1450/2514] | Loss: 0.0099
+  Batch [1500/2514] | Loss: 0.0098
+  Batch [1550/2514] | Loss: 0.0098
+  Batch [1600/2514] | Loss: 0.0098
+  Batch [1650/2514] | Loss: 0.0097
+  Batch [1700/2514] | Loss: 0.0099
+  Batch [1750/2514] | Loss: 0.0098
+  Batch [1800/2514] | Loss: 0.0098
+  Batch [1850/2514] | Loss: 0.0099
+  Batch [1900/2514] | Loss: 0.0099
+  Batch [1950/2514] | Loss: 0.0099
+  Batch [2000/2514] | Loss: 0.0099
+  Batch [2050/2514] | Loss: 0.0099
+  Batch [2100/2514] | Loss: 0.0098
+  Batch [2150/2514] | Loss: 0.0098
+  Batch [2200/2514] | Loss: 0.0098
+  Batch [2250/2514] | Loss: 0.0098
+  Batch [2300/2514] | Loss: 0.0098
+  Batch [2350/2514] | Loss: 0.0098
+  Batch [2400/2514] | Loss: 0.0100
+  Batch [2450/2514] | Loss: 0.0100
+  Batch [2500/2514] | Loss: 0.0100
+
+Train Results:
+  Loss: 0.0100 | Dice: 0.7274 | Dice_pos: 0.5957 | Dice_neg: 0.8761 | IoU: 0.4819
+  Per-Class Metrics:
+    Class 1: Dice=0.9091, IoU=0.9026, Prec=0.9508, Recall=0.9465, ClsAcc=0.9398, ClsF1=0.8002
+    Class 2: Dice=0.9801, IoU=0.9801, Prec=0.9998, Recall=0.9802, ClsAcc=0.9803, ClsF1=0.9224
+    Class 3: Dice=0.7825, IoU=0.7338, Prec=0.8570, Recall=0.8489, ClsAcc=0.9042, ClsF1=0.8612
+    Class 4: Dice=0.9636, IoU=0.9559, Prec=0.9731, Recall=0.9797, ClsAcc=0.9798, ClsF1=0.9389
+  Time: 427.6s
+
+================================================================================
+Fold 0 | Epoch 21/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0152
+  Batch [100/629] | Loss: 0.0143
+  Batch [150/629] | Loss: 0.0140
+  Batch [200/629] | Loss: 0.0136
+  Batch [250/629] | Loss: 0.0142
+  Batch [300/629] | Loss: 0.0135
+  Batch [350/629] | Loss: 0.0133
+  Batch [400/629] | Loss: 0.0136
+  Batch [450/629] | Loss: 0.0136
+  Batch [500/629] | Loss: 0.0134
+  Batch [550/629] | Loss: 0.0133
+  Batch [600/629] | Loss: 0.0132
+
+Validation Results:
+  Loss: 0.0131 | Dice: 0.7136 | Dice_pos: 0.5334 | Dice_neg: 0.9170 | IoU: 0.4218
+  Per-Class Metrics:
+    Class 1: Dice=0.9234, IoU=0.9162, Prec=0.9551, Recall=0.9538, ClsAcc=0.9503, ClsF1=0.8414
+    Class 2: Dice=0.9801, IoU=0.9801, Prec=0.9992, Recall=0.9809, ClsAcc=0.9801, ClsF1=0.9253
+    Class 3: Dice=0.7723, IoU=0.7267, Prec=0.9107, Recall=0.7915, ClsAcc=0.9058, ClsF1=0.8499
+    Class 4: Dice=0.9377, IoU=0.9298, Prec=0.9570, Recall=0.9698, ClsAcc=0.9583, ClsF1=0.8630
+  Time: 270.2s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_21.pth
+
+  Current LR: 5.00e-04 | Best Dice: 0.7243 | Best Loss: 0.0125
+
+================================================================================
+Fold 0 | Epoch 22/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0077
+  Batch [100/2514] | Loss: 0.0091
+  Batch [150/2514] | Loss: 0.0095
+  Batch [200/2514] | Loss: 0.0093
+  Batch [250/2514] | Loss: 0.0092
+  Batch [300/2514] | Loss: 0.0091
+  Batch [350/2514] | Loss: 0.0094
+  Batch [400/2514] | Loss: 0.0094
+  Batch [450/2514] | Loss: 0.0092
+  Batch [500/2514] | Loss: 0.0093
+  Batch [550/2514] | Loss: 0.0093
+  Batch [600/2514] | Loss: 0.0093
+  Batch [650/2514] | Loss: 0.0093
+  Batch [700/2514] | Loss: 0.0092
+  Batch [750/2514] | Loss: 0.0092
+  Batch [800/2514] | Loss: 0.0091
+  Batch [850/2514] | Loss: 0.0090
+  Batch [900/2514] | Loss: 0.0089
+  Batch [950/2514] | Loss: 0.0089
+  Batch [1000/2514] | Loss: 0.0089
+  Batch [1050/2514] | Loss: 0.0089
+  Batch [1100/2514] | Loss: 0.0090
+  Batch [1150/2514] | Loss: 0.0089
+  Batch [1200/2514] | Loss: 0.0089
+  Batch [1250/2514] | Loss: 0.0089
+  Batch [1300/2514] | Loss: 0.0089
+  Batch [1350/2514] | Loss: 0.0089
+  Batch [1400/2514] | Loss: 0.0089
+  Batch [1450/2514] | Loss: 0.0088
+  Batch [1500/2514] | Loss: 0.0088
+  Batch [1550/2514] | Loss: 0.0087
+  Batch [1600/2514] | Loss: 0.0087
+  Batch [1650/2514] | Loss: 0.0087
+  Batch [1700/2514] | Loss: 0.0087
+  Batch [1750/2514] | Loss: 0.0086
+  Batch [1800/2514] | Loss: 0.0087
+  Batch [1850/2514] | Loss: 0.0087
+  Batch [1900/2514] | Loss: 0.0087
+  Batch [1950/2514] | Loss: 0.0087
+  Batch [2000/2514] | Loss: 0.0087
+  Batch [2050/2514] | Loss: 0.0087
+  Batch [2100/2514] | Loss: 0.0087
+  Batch [2150/2514] | Loss: 0.0087
+  Batch [2200/2514] | Loss: 0.0087
+  Batch [2250/2514] | Loss: 0.0087
+  Batch [2300/2514] | Loss: 0.0087
+  Batch [2350/2514] | Loss: 0.0087
+  Batch [2400/2514] | Loss: 0.0087
+  Batch [2450/2514] | Loss: 0.0087
+  Batch [2500/2514] | Loss: 0.0087
+
+Train Results:
+  Loss: 0.0087 | Dice: 0.7601 | Dice_pos: 0.6369 | Dice_neg: 0.8992 | IoU: 0.5194
+  Per-Class Metrics:
+    Class 1: Dice=0.9226, IoU=0.9147, Prec=0.9548, Recall=0.9537, ClsAcc=0.9521, ClsF1=0.8395
+    Class 2: Dice=0.9791, IoU=0.9788, Prec=0.9975, Recall=0.9809, ClsAcc=0.9820, ClsF1=0.9291
+    Class 3: Dice=0.8057, IoU=0.7569, Prec=0.8697, Recall=0.8612, ClsAcc=0.9202, ClsF1=0.8791
+    Class 4: Dice=0.9741, IoU=0.9666, Prec=0.9812, Recall=0.9829, ClsAcc=0.9881, ClsF1=0.9658
+  Time: 427.4s
+
+================================================================================
+Fold 0 | Epoch 22/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0125
+  Batch [100/629] | Loss: 0.0117
+  Batch [150/629] | Loss: 0.0114
+  Batch [200/629] | Loss: 0.0112
+  Batch [250/629] | Loss: 0.0117
+  Batch [300/629] | Loss: 0.0112
+  Batch [350/629] | Loss: 0.0110
+  Batch [400/629] | Loss: 0.0112
+  Batch [450/629] | Loss: 0.0113
+  Batch [500/629] | Loss: 0.0112
+  Batch [550/629] | Loss: 0.0111
+  Batch [600/629] | Loss: 0.0111
+
+Validation Results:
+  Loss: 0.0111 | Dice: 0.7482 | Dice_pos: 0.6010 | Dice_neg: 0.9145 | IoU: 0.4815
+  Per-Class Metrics:
+    Class 1: Dice=0.9273, IoU=0.9200, Prec=0.9593, Recall=0.9544, ClsAcc=0.9527, ClsF1=0.8431
+    Class 2: Dice=0.9787, IoU=0.9786, Prec=0.9976, Recall=0.9810, ClsAcc=0.9793, ClsF1=0.9221
+    Class 3: Dice=0.7870, IoU=0.7377, Prec=0.8706, Recall=0.8373, ClsAcc=0.9126, ClsF1=0.8640
+    Class 4: Dice=0.9673, IoU=0.9596, Prec=0.9783, Recall=0.9774, ClsAcc=0.9849, ClsF1=0.9452
+  Time: 186.8s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_22.pth
+  *** New best model saved: outputs_20260111_205115/fold_0/best_model.pth ***
+
+  Current LR: 2.50e-04 | Best Dice: 0.7482 | Best Loss: 0.0111
+
+================================================================================
+Fold 0 | Epoch 23/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0071
+  Batch [100/2514] | Loss: 0.0082
+  Batch [150/2514] | Loss: 0.0088
+  Batch [200/2514] | Loss: 0.0089
+  Batch [250/2514] | Loss: 0.0086
+  Batch [300/2514] | Loss: 0.0086
+  Batch [350/2514] | Loss: 0.0085
+  Batch [400/2514] | Loss: 0.0083
+  Batch [450/2514] | Loss: 0.0084
+  Batch [500/2514] | Loss: 0.0084
+  Batch [550/2514] | Loss: 0.0084
+  Batch [600/2514] | Loss: 0.0085
+  Batch [650/2514] | Loss: 0.0085
+  Batch [700/2514] | Loss: 0.0084
+  Batch [750/2514] | Loss: 0.0084
+  Batch [800/2514] | Loss: 0.0084
+  Batch [850/2514] | Loss: 0.0085
+  Batch [900/2514] | Loss: 0.0084
+  Batch [950/2514] | Loss: 0.0083
+  Batch [1000/2514] | Loss: 0.0084
+  Batch [1050/2514] | Loss: 0.0084
+  Batch [1100/2514] | Loss: 0.0084
+  Batch [1150/2514] | Loss: 0.0084
+  Batch [1200/2514] | Loss: 0.0084
+  Batch [1250/2514] | Loss: 0.0084
+  Batch [1300/2514] | Loss: 0.0084
+  Batch [1350/2514] | Loss: 0.0085
+  Batch [1400/2514] | Loss: 0.0084
+  Batch [1450/2514] | Loss: 0.0084
+  Batch [1500/2514] | Loss: 0.0084
+  Batch [1550/2514] | Loss: 0.0084
+  Batch [1600/2514] | Loss: 0.0084
+  Batch [1650/2514] | Loss: 0.0083
+  Batch [1700/2514] | Loss: 0.0083
+  Batch [1750/2514] | Loss: 0.0084
+  Batch [1800/2514] | Loss: 0.0083
+  Batch [1850/2514] | Loss: 0.0083
+  Batch [1900/2514] | Loss: 0.0084
+  Batch [1950/2514] | Loss: 0.0083
+  Batch [2000/2514] | Loss: 0.0084
+  Batch [2050/2514] | Loss: 0.0084
+  Batch [2100/2514] | Loss: 0.0084
+  Batch [2150/2514] | Loss: 0.0084
+  Batch [2200/2514] | Loss: 0.0084
+  Batch [2250/2514] | Loss: 0.0084
+  Batch [2300/2514] | Loss: 0.0084
+  Batch [2350/2514] | Loss: 0.0083
+  Batch [2400/2514] | Loss: 0.0083
+  Batch [2450/2514] | Loss: 0.0083
+  Batch [2500/2514] | Loss: 0.0084
+
+Train Results:
+  Loss: 0.0084 | Dice: 0.7659 | Dice_pos: 0.6486 | Dice_neg: 0.8985 | IoU: 0.5321
+  Per-Class Metrics:
+    Class 1: Dice=0.9203, IoU=0.9121, Prec=0.9512, Recall=0.9552, ClsAcc=0.9486, ClsF1=0.8316
+    Class 2: Dice=0.9765, IoU=0.9757, Prec=0.9930, Recall=0.9819, ClsAcc=0.9827, ClsF1=0.9346
+    Class 3: Dice=0.8115, IoU=0.7631, Prec=0.8744, Recall=0.8645, ClsAcc=0.9215, ClsF1=0.8788
+    Class 4: Dice=0.9764, IoU=0.9689, Prec=0.9823, Recall=0.9843, ClsAcc=0.9900, ClsF1=0.9708
+  Time: 425.4s
+
+================================================================================
+Fold 0 | Epoch 23/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0127
+  Batch [100/629] | Loss: 0.0121
+  Batch [150/629] | Loss: 0.0119
+  Batch [200/629] | Loss: 0.0115
+  Batch [250/629] | Loss: 0.0122
+  Batch [300/629] | Loss: 0.0118
+  Batch [350/629] | Loss: 0.0116
+  Batch [400/629] | Loss: 0.0118
+  Batch [450/629] | Loss: 0.0120
+  Batch [500/629] | Loss: 0.0118
+  Batch [550/629] | Loss: 0.0117
+  Batch [600/629] | Loss: 0.0117
+
+Validation Results:
+  Loss: 0.0116 | Dice: 0.7423 | Dice_pos: 0.6116 | Dice_neg: 0.8899 | IoU: 0.4937
+  Per-Class Metrics:
+    Class 1: Dice=0.9253, IoU=0.9186, Prec=0.9590, Recall=0.9534, ClsAcc=0.9495, ClsF1=0.8340
+    Class 2: Dice=0.9815, IoU=0.9802, Prec=0.9939, Recall=0.9851, ClsAcc=0.9873, ClsF1=0.9491
+    Class 3: Dice=0.7758, IoU=0.7265, Prec=0.8528, Recall=0.8420, ClsAcc=0.9002, ClsF1=0.8557
+    Class 4: Dice=0.9688, IoU=0.9611, Prec=0.9903, Recall=0.9677, ClsAcc=0.9909, ClsF1=0.9706
+  Time: 329.6s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_23.pth
+
+  Current LR: 2.50e-04 | Best Dice: 0.7482 | Best Loss: 0.0111
+
+================================================================================
+Fold 0 | Epoch 24/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0087
+  Batch [100/2514] | Loss: 0.0078
+  Batch [150/2514] | Loss: 0.0087
+  Batch [200/2514] | Loss: 0.0088
+  Batch [250/2514] | Loss: 0.0083
+  Batch [300/2514] | Loss: 0.0081
+  Batch [350/2514] | Loss: 0.0081
+  Batch [400/2514] | Loss: 0.0080
+  Batch [450/2514] | Loss: 0.0080
+  Batch [500/2514] | Loss: 0.0080
+  Batch [550/2514] | Loss: 0.0079
+  Batch [600/2514] | Loss: 0.0080
+  Batch [650/2514] | Loss: 0.0080
+  Batch [700/2514] | Loss: 0.0080
+  Batch [750/2514] | Loss: 0.0080
+  Batch [800/2514] | Loss: 0.0080
+  Batch [850/2514] | Loss: 0.0080
+  Batch [900/2514] | Loss: 0.0081
+  Batch [950/2514] | Loss: 0.0082
+  Batch [1000/2514] | Loss: 0.0081
+  Batch [1050/2514] | Loss: 0.0082
+  Batch [1100/2514] | Loss: 0.0082
+  Batch [1150/2514] | Loss: 0.0083
+  Batch [1200/2514] | Loss: 0.0082
+  Batch [1250/2514] | Loss: 0.0082
+  Batch [1300/2514] | Loss: 0.0082
+  Batch [1350/2514] | Loss: 0.0082
+  Batch [1400/2514] | Loss: 0.0082
+  Batch [1450/2514] | Loss: 0.0081
+  Batch [1500/2514] | Loss: 0.0082
+  Batch [1550/2514] | Loss: 0.0081
+  Batch [1600/2514] | Loss: 0.0081
+  Batch [1650/2514] | Loss: 0.0081
+  Batch [1700/2514] | Loss: 0.0081
+  Batch [1750/2514] | Loss: 0.0081
+  Batch [1800/2514] | Loss: 0.0081
+  Batch [1850/2514] | Loss: 0.0081
+  Batch [1900/2514] | Loss: 0.0081
+  Batch [1950/2514] | Loss: 0.0081
+  Batch [2000/2514] | Loss: 0.0081
+  Batch [2050/2514] | Loss: 0.0080
+  Batch [2100/2514] | Loss: 0.0080
+  Batch [2150/2514] | Loss: 0.0080
+  Batch [2200/2514] | Loss: 0.0080
+  Batch [2250/2514] | Loss: 0.0081
+  Batch [2300/2514] | Loss: 0.0081
+  Batch [2350/2514] | Loss: 0.0081
+  Batch [2400/2514] | Loss: 0.0081
+  Batch [2450/2514] | Loss: 0.0081
+  Batch [2500/2514] | Loss: 0.0081
+
+Train Results:
+  Loss: 0.0081 | Dice: 0.7683 | Dice_pos: 0.6605 | Dice_neg: 0.8901 | IoU: 0.5415
+  Per-Class Metrics:
+    Class 1: Dice=0.9232, IoU=0.9150, Prec=0.9521, Recall=0.9566, ClsAcc=0.9517, ClsF1=0.8364
+    Class 2: Dice=0.9777, IoU=0.9761, Prec=0.9901, Recall=0.9846, ClsAcc=0.9848, ClsF1=0.9424
+    Class 3: Dice=0.8149, IoU=0.7663, Prec=0.8756, Recall=0.8664, ClsAcc=0.9254, ClsF1=0.8896
+    Class 4: Dice=0.9760, IoU=0.9685, Prec=0.9811, Recall=0.9850, ClsAcc=0.9896, ClsF1=0.9719
+  Time: 430.3s
+
+================================================================================
+Fold 0 | Epoch 24/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0144
+  Batch [100/629] | Loss: 0.0132
+  Batch [150/629] | Loss: 0.0130
+  Batch [200/629] | Loss: 0.0124
+  Batch [250/629] | Loss: 0.0131
+  Batch [300/629] | Loss: 0.0127
+  Batch [350/629] | Loss: 0.0125
+  Batch [400/629] | Loss: 0.0128
+  Batch [450/629] | Loss: 0.0129
+  Batch [500/629] | Loss: 0.0127
+  Batch [550/629] | Loss: 0.0126
+  Batch [600/629] | Loss: 0.0125
+
+Validation Results:
+  Loss: 0.0124 | Dice: 0.7343 | Dice_pos: 0.5935 | Dice_neg: 0.8933 | IoU: 0.4725
+  Per-Class Metrics:
+    Class 1: Dice=0.8948, IoU=0.8865, Prec=0.9162, Recall=0.9628, ClsAcc=0.9205, ClsF1=0.7585
+    Class 2: Dice=0.9806, IoU=0.9797, Prec=0.9963, Recall=0.9830, ClsAcc=0.9873, ClsF1=0.9502
+    Class 3: Dice=0.7801, IoU=0.7309, Prec=0.8631, Recall=0.8368, ClsAcc=0.9074, ClsF1=0.8568
+    Class 4: Dice=0.9661, IoU=0.9590, Prec=0.9949, Recall=0.9609, ClsAcc=0.9897, ClsF1=0.9640
+  Time: 209.3s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_24.pth
+
+  Current LR: 2.50e-04 | Best Dice: 0.7482 | Best Loss: 0.0111
+
+================================================================================
+Fold 0 | Epoch 25/25 | Phase: TRAIN
+================================================================================
+  Batch [50/2514] | Loss: 0.0077
+  Batch [100/2514] | Loss: 0.0079
+  Batch [150/2514] | Loss: 0.0080
+  Batch [200/2514] | Loss: 0.0082
+  Batch [250/2514] | Loss: 0.0080
+  Batch [300/2514] | Loss: 0.0081
+  Batch [350/2514] | Loss: 0.0078
+  Batch [400/2514] | Loss: 0.0077
+  Batch [450/2514] | Loss: 0.0077
+  Batch [500/2514] | Loss: 0.0077
+  Batch [550/2514] | Loss: 0.0077
+  Batch [600/2514] | Loss: 0.0077
+  Batch [650/2514] | Loss: 0.0077
+  Batch [700/2514] | Loss: 0.0076
+  Batch [750/2514] | Loss: 0.0076
+  Batch [800/2514] | Loss: 0.0076
+  Batch [850/2514] | Loss: 0.0076
+  Batch [900/2514] | Loss: 0.0077
+  Batch [950/2514] | Loss: 0.0077
+  Batch [1000/2514] | Loss: 0.0077
+  Batch [1050/2514] | Loss: 0.0077
+  Batch [1100/2514] | Loss: 0.0077
+  Batch [1150/2514] | Loss: 0.0077
+  Batch [1200/2514] | Loss: 0.0077
+  Batch [1250/2514] | Loss: 0.0077
+  Batch [1300/2514] | Loss: 0.0077
+  Batch [1350/2514] | Loss: 0.0077
+  Batch [1400/2514] | Loss: 0.0077
+  Batch [1450/2514] | Loss: 0.0077
+  Batch [1500/2514] | Loss: 0.0077
+  Batch [1550/2514] | Loss: 0.0077
+  Batch [1600/2514] | Loss: 0.0077
+  Batch [1650/2514] | Loss: 0.0077
+  Batch [1700/2514] | Loss: 0.0078
+  Batch [1750/2514] | Loss: 0.0078
+  Batch [1800/2514] | Loss: 0.0077
+  Batch [1850/2514] | Loss: 0.0078
+  Batch [1900/2514] | Loss: 0.0078
+  Batch [1950/2514] | Loss: 0.0078
+  Batch [2000/2514] | Loss: 0.0078
+  Batch [2050/2514] | Loss: 0.0078
+  Batch [2100/2514] | Loss: 0.0078
+  Batch [2150/2514] | Loss: 0.0079
+  Batch [2200/2514] | Loss: 0.0078
+  Batch [2250/2514] | Loss: 0.0078
+  Batch [2300/2514] | Loss: 0.0078
+  Batch [2350/2514] | Loss: 0.0078
+  Batch [2400/2514] | Loss: 0.0079
+  Batch [2450/2514] | Loss: 0.0078
+  Batch [2500/2514] | Loss: 0.0078
+
+Train Results:
+  Loss: 0.0078 | Dice: 0.7758 | Dice_pos: 0.6701 | Dice_neg: 0.8951 | IoU: 0.5493
+  Per-Class Metrics:
+    Class 1: Dice=0.9229, IoU=0.9144, Prec=0.9502, Recall=0.9583, ClsAcc=0.9506, ClsF1=0.8366
+    Class 2: Dice=0.9771, IoU=0.9755, Prec=0.9895, Recall=0.9848, ClsAcc=0.9847, ClsF1=0.9417
+    Class 3: Dice=0.8174, IoU=0.7689, Prec=0.8753, Recall=0.8694, ClsAcc=0.9251, ClsF1=0.8897
+    Class 4: Dice=0.9767, IoU=0.9692, Prec=0.9816, Recall=0.9851, ClsAcc=0.9901, ClsF1=0.9728
+  Time: 428.9s
+
+================================================================================
+Fold 0 | Epoch 25/25 | Phase: VALIDATION
+================================================================================
+  Batch [50/629] | Loss: 0.0158
+  Batch [100/629] | Loss: 0.0144
+  Batch [150/629] | Loss: 0.0142
+  Batch [200/629] | Loss: 0.0140
+  Batch [250/629] | Loss: 0.0145
+  Batch [300/629] | Loss: 0.0139
+  Batch [350/629] | Loss: 0.0134
+  Batch [400/629] | Loss: 0.0136
+  Batch [450/629] | Loss: 0.0137
+  Batch [500/629] | Loss: 0.0135
+  Batch [550/629] | Loss: 0.0133
+  Batch [600/629] | Loss: 0.0132
+
+Validation Results:
+  Loss: 0.0131 | Dice: 0.7408 | Dice_pos: 0.6042 | Dice_neg: 0.8950 | IoU: 0.4823
+  Per-Class Metrics:
+    Class 1: Dice=0.9135, IoU=0.9055, Prec=0.9349, Recall=0.9627, ClsAcc=0.9376, ClsF1=0.8091
+    Class 2: Dice=0.9774, IoU=0.9761, Prec=0.9900, Recall=0.9851, ClsAcc=0.9845, ClsF1=0.9380
+    Class 3: Dice=0.7783, IoU=0.7288, Prec=0.8663, Recall=0.8321, ClsAcc=0.9074, ClsF1=0.8545
+    Class 4: Dice=0.9691, IoU=0.9617, Prec=0.9899, Recall=0.9687, ClsAcc=0.9901, ClsF1=0.9677
+  Time: 209.9s
+  Saved checkpoint: outputs_20260111_205115/fold_0/checkpoint_epoch_25.pth
+
+  Current LR: 2.50e-04 | Best Dice: 0.7482 | Best Loss: 0.0111
+  Saved OOF predictions: outputs_20260111_205115/fold_0/oof_predictions.npy
+  Saved training history: outputs_20260111_205115/fold_0/history.csv
+
+################################################################################
+# Finished training for Fold 0
+# Best Dice: 0.7482 | Best Loss: 0.0111
+################################################################################
+
+
+================================================================================
+TRAINING SUMMARY
+================================================================================
+Fold 0: Best Dice = 0.7482, Best Loss = 0.0111
+================================================================================
