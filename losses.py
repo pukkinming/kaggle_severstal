@@ -46,6 +46,58 @@ class BCEDiceLoss(nn.Module):
         return self.bce_weight * bce_loss + self.dice_weight * dice_loss
 
 
+class BCEWithPosWeightLoss(nn.Module):
+    """
+    BCE Loss with custom pos_weight for each class
+    pos_weight: weight of positive examples (defects) for each class
+    Higher pos_weight gives more importance to detecting defects
+    
+    pos_weight=(2.0, 2.0, 1.0, 1.5) means:
+    - Class 1: 2x weight for positive examples
+    - Class 2: 2x weight for positive examples  
+    - Class 3: 1x weight (balanced)
+    - Class 4: 1.5x weight for positive examples
+    """
+    def __init__(self, pos_weight=(2.0, 2.0, 1.0, 1.5)):
+        super(BCEWithPosWeightLoss, self).__init__()
+        # Register as buffer so it moves with model to GPU
+        self.register_buffer('pos_weight', torch.tensor(pos_weight, dtype=torch.float32))
+    
+    def forward(self, predictions, targets):
+        # predictions shape: [batch, num_classes, height, width]
+        # targets shape: [batch, num_classes, height, width]
+        # pos_weight shape: [num_classes] -> reshape to [1, num_classes, 1, 1] for broadcasting
+        
+        # Ensure pos_weight is on the same device as predictions
+        pos_weight = self.pos_weight.to(predictions.device).view(1, -1, 1, 1)
+        
+        # Use PyTorch's functional API
+        # F.binary_cross_entropy_with_logits applies pos_weight correctly
+        loss = F.binary_cross_entropy_with_logits(
+            predictions, targets, pos_weight=pos_weight, reduction='mean'
+        )
+        
+        return loss
+
+
+class BCEDiceWithPosWeightLoss(nn.Module):
+    """
+    Combined BCE (with pos_weight) and Dice Loss
+    Default: 0.75*BCE + 0.25*Dice
+    """
+    def __init__(self, pos_weight=(2.0, 2.0, 1.0, 1.5), bce_weight=0.75, dice_weight=0.25):
+        super(BCEDiceWithPosWeightLoss, self).__init__()
+        self.bce = BCEWithPosWeightLoss(pos_weight=pos_weight)
+        self.dice = DiceLoss()
+        self.bce_weight = bce_weight
+        self.dice_weight = dice_weight
+    
+    def forward(self, predictions, targets):
+        bce_loss = self.bce(predictions, targets)
+        dice_loss = self.dice(predictions, targets)
+        return self.bce_weight * bce_loss + self.dice_weight * dice_loss
+
+
 def predict(X, threshold):
     """
     X is sigmoid output of the model

@@ -31,6 +31,10 @@ class Inferencer:
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         
         print(f"Using device: {self.device}")
+        print(f"Image mode: {'CROPS' if config.USE_CROPS else 'FULL IMAGES'}")
+        if config.USE_CROPS:
+            print(f"  Crop size: {config.CROP_HEIGHT}x{config.CROP_WIDTH}")
+            print(f"  Crop stride: {config.CROP_STRIDE}")
         print(f"Loading {len(checkpoint_paths)} model(s)")
         
         # Load models
@@ -71,9 +75,66 @@ class Inferencer:
         """
         with torch.no_grad():
             images = images.to(self.device)
-            outputs = model(images)
-            probs = torch.sigmoid(outputs)
-            return probs.cpu().numpy()
+            
+            # Check if we need to use crop-based prediction
+            if config.USE_CROPS:
+                # Predict on crops and stitch back together
+                probs = self._predict_with_crops(model, images)
+            else:
+                # Standard full-image prediction
+                outputs = model(images)
+                probs = torch.sigmoid(outputs)
+                probs = probs.cpu().numpy()
+            
+            return probs
+    
+    def _predict_with_crops(self, model, images):
+        """
+        Predict on crops and stitch predictions back together
+        
+        Args:
+            model: Model to use for prediction
+            images: Input images tensor [B, 3, H, W] where W=1600
+        
+        Returns:
+            predictions: Full-width predictions [B, 4, H, 1600]
+        """
+        batch_size, channels, height, full_width = images.shape
+        crop_width = config.CROP_WIDTH
+        stride = config.CROP_STRIDE
+        
+        # Calculate number of crops
+        num_crops = (full_width - crop_width) // stride + 1
+        
+        # Initialize output tensors for averaging overlapping regions
+        predictions = torch.zeros(batch_size, config.NUM_CLASSES, height, full_width).to(self.device)
+        counts = torch.zeros(batch_size, config.NUM_CLASSES, height, full_width).to(self.device)
+        
+        with torch.no_grad():
+            for i in range(num_crops):
+                x_start = i * stride
+                x_end = min(x_start + crop_width, full_width)
+                
+                # Adjust if crop extends beyond image
+                if x_end - x_start < crop_width:
+                    x_end = full_width
+                    x_start = full_width - crop_width
+                
+                # Extract crop
+                crop = images[:, :, :, x_start:x_end]  # [B, 3, H, crop_width]
+                
+                # Predict on crop
+                crop_pred = model(crop)
+                crop_prob = torch.sigmoid(crop_pred)
+                
+                # Accumulate predictions (for averaging overlaps)
+                predictions[:, :, :, x_start:x_end] += crop_prob
+                counts[:, :, :, x_start:x_end] += 1
+        
+        # Average overlapping regions
+        predictions = predictions / counts
+        
+        return predictions.cpu().numpy()
     
     def predict_batch(self, images):
         """

@@ -9,7 +9,8 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import StratifiedKFold
 from albumentations import (
-    HorizontalFlip, ShiftScaleRotate, Normalize, Resize, Compose, GaussNoise
+    HorizontalFlip, VerticalFlip, RandomBrightnessContrast, 
+    ShiftScaleRotate, Normalize, Resize, Compose, GaussNoise
 )
 from albumentations.pytorch import ToTensorV2
 
@@ -129,7 +130,7 @@ def prepare_trainval_dataframe(csv_path, n_folds=5, seed=69, train_images_dir=No
 
 class SteelDataset(Dataset):
     """
-    Dataset for Steel Defect Detection
+    Dataset for Steel Defect Detection - Full Images
     """
     def __init__(self, df, data_folder, mean, std, phase='train'):
         self.df = df
@@ -166,6 +167,174 @@ class SteelDataset(Dataset):
         return len(self.fnames)
 
 
+class SteelCropsDataset(Dataset):
+    """
+    Dataset for Steel Defect Detection - Crops
+    Generates multiple crops from each steel image to increase training samples
+    """
+    def __init__(self, df, data_folder, mean, std, phase='train', 
+                 crop_height=256, crop_width=512, stride=256):
+        """
+        Args:
+            df: DataFrame with image annotations
+            data_folder: Path to image folder
+            mean: Normalization mean
+            std: Normalization std
+            phase: 'train' or 'val'
+            crop_height: Height of crops (256)
+            crop_width: Width of crops (512)
+            stride: Horizontal stride for crops
+                    stride=256: 50% overlap, 5 crops per image
+                    stride=512: no overlap, 3 crops per image
+        """
+        self.df = df
+        self.root = data_folder
+        self.mean = mean
+        self.std = std
+        self.phase = phase
+        self.crop_height = crop_height
+        self.crop_width = crop_width
+        self.stride = stride
+        self.transforms = get_transforms(phase, mean, std)
+        self.fnames = self.df.index.tolist()
+        
+        # Calculate number of crops per image
+        self.image_width = 1600  # Full image width
+        self.crops_per_image = self._calculate_crops_per_image()
+        
+        # Total samples = num_images × crops_per_image
+        self.total_samples = len(self.fnames) * self.crops_per_image
+        
+        print(f"  {phase.upper()} - Crops per image: {self.crops_per_image}, "
+              f"Total samples: {self.total_samples} (from {len(self.fnames)} images)")
+    
+    def _calculate_crops_per_image(self):
+        """
+        Calculate number of crops per image based on stride
+        For 1600 width with 512 crop and stride 256:
+        - Crop 0: [0:512]
+        - Crop 1: [256:768]
+        - Crop 2: [512:1024]
+        - Crop 3: [768:1280]
+        - Crop 4: [1088:1600] (adjusted to cover the end)
+        """
+        # Start with crops at regular stride intervals
+        num_crops = (self.image_width - self.crop_width) // self.stride + 1
+        
+        # Check if we need an additional crop to cover the remaining pixels
+        last_crop_end = (num_crops - 1) * self.stride + self.crop_width
+        if last_crop_end < self.image_width:
+            num_crops += 1  # Add one more crop to cover the end
+        
+        return num_crops
+    
+    def __len__(self):
+        return self.total_samples
+    
+    def __getitem__(self, idx):
+        # Determine which image and which crop
+        image_idx = idx // self.crops_per_image
+        crop_idx = idx % self.crops_per_image
+        
+        # Get full image and mask
+        image_id, full_mask = make_mask(image_idx, self.df)
+        image_path = os.path.join(self.root, image_id)
+        full_image = cv2.imread(image_path)
+        
+        if full_image is None:
+            raise ValueError(f"Could not load image: {image_path}")
+        
+        # Calculate crop coordinates
+        x_start = crop_idx * self.stride
+        x_end = min(x_start + self.crop_width, self.image_width)
+        
+        # If crop extends beyond image, shift it back to fit
+        if x_end - x_start < self.crop_width:
+            x_end = self.image_width
+            x_start = self.image_width - self.crop_width
+        
+        # Extract crop from full image and mask
+        crop_image = full_image[:, x_start:x_end, :]  # (256, 512, 3)
+        crop_mask = full_mask[:, x_start:x_end, :]    # (256, 512, 4)
+        
+        # Apply augmentations
+        augmented = self.transforms(image=crop_image, mask=crop_mask)
+        crop_image = augmented['image']
+        crop_mask = augmented['mask']
+        
+        # Convert mask to tensor and permute to (C, H, W)
+        if not isinstance(crop_mask, torch.Tensor):
+            crop_mask = torch.from_numpy(crop_mask)
+        
+        if crop_mask.dim() == 3:
+            crop_mask = crop_mask.permute(2, 0, 1)  # (4, 256, 512)
+        
+        return crop_image, crop_mask, image_id
+
+
+class SteelPrecroppedDataset(Dataset):
+    """
+    Dataset for Steel Defect Detection - Pre-cropped Images
+    
+    Loads images that have been pre-cropped to disk using precrop_images.py
+    This eliminates the need to load full images and extract crops on-the-fly,
+    reducing memory usage and improving data loading speed.
+    """
+    def __init__(self, crop_df, precropped_dir, mean, std, phase='train'):
+        """
+        Args:
+            crop_df: DataFrame with crop information (from crop_mapping.csv)
+            precropped_dir: Path to directory containing pre-cropped images
+            mean: Normalization mean
+            std: Normalization std
+            phase: 'train' or 'val'
+        """
+        self.crop_df = crop_df.reset_index(drop=True)
+        self.precropped_dir = precropped_dir
+        self.images_dir = os.path.join(precropped_dir, 'images')
+        self.masks_dir = os.path.join(precropped_dir, 'masks')
+        self.mean = mean
+        self.std = std
+        self.phase = phase
+        self.transforms = get_transforms(phase, mean, std)
+        
+        print(f"  {phase.upper()} - Pre-cropped samples: {len(self.crop_df)}")
+    
+    def __len__(self):
+        return len(self.crop_df)
+    
+    def __getitem__(self, idx):
+        # Get crop information
+        crop_info = self.crop_df.iloc[idx]
+        crop_id = crop_info['crop_id']
+        original_image_id = crop_info['original_image_id']
+        
+        # Load pre-cropped image
+        crop_image_path = os.path.join(self.images_dir, f"{crop_id}.jpg")
+        crop_image = cv2.imread(crop_image_path)
+        
+        if crop_image is None:
+            raise ValueError(f"Could not load crop image: {crop_image_path}")
+        
+        # Load pre-cropped mask
+        crop_mask_path = os.path.join(self.masks_dir, f"{crop_id}.npy")
+        crop_mask = np.load(crop_mask_path)
+        
+        # Apply augmentations
+        augmented = self.transforms(image=crop_image, mask=crop_mask)
+        crop_image = augmented['image']
+        crop_mask = augmented['mask']
+        
+        # Convert mask to tensor and permute to (C, H, W)
+        if not isinstance(crop_mask, torch.Tensor):
+            crop_mask = torch.from_numpy(crop_mask)
+        
+        if crop_mask.dim() == 3:
+            crop_mask = crop_mask.permute(2, 0, 1)  # (4, 256, 512)
+        
+        return crop_image, crop_mask, original_image_id
+
+
 class TestDataset(Dataset):
     """
     Dataset for test prediction
@@ -199,13 +368,24 @@ def get_transforms(phase, mean, std):
     """
     Get augmentation transforms for training/validation
     """
+    # Import config to access augmentation parameters
+    import config
+    
     list_transforms = []
     
     if phase == "train":
+        # Add augmentations for training
         list_transforms.extend([
-            HorizontalFlip(p=0.5),
+            HorizontalFlip(p=config.AUG_HORIZONTAL_FLIP_PROB),
+            VerticalFlip(p=config.AUG_VERTICAL_FLIP_PROB),
+            RandomBrightnessContrast(
+                brightness_limit=config.AUG_BRIGHTNESS_LIMIT,
+                contrast_limit=config.AUG_CONTRAST_LIMIT,
+                p=config.AUG_RANDOM_BRIGHTNESS_CONTRAST_PROB
+            ),
         ])
     
+    # Normalization and conversion (applied to both train and val)
     list_transforms.extend([
         Normalize(mean=mean, std=std, p=1),
         ToTensorV2(),
@@ -216,17 +396,86 @@ def get_transforms(phase, mean, std):
 
 
 def get_train_val_loaders(df, fold, data_folder, mean, std, batch_size_train, 
-                          batch_size_val, num_workers):
+                          batch_size_val, num_workers, use_crops=False,
+                          crop_height=256, crop_width=512, crop_stride=256,
+                          use_precropped=False, precropped_dir=None):
     """
     Get train and validation data loaders for a specific fold
+    
+    Args:
+        df: DataFrame with fold information
+        fold: Fold number for validation
+        data_folder: Path to image folder
+        mean: Normalization mean
+        std: Normalization std
+        batch_size_train: Training batch size
+        batch_size_val: Validation batch size
+        num_workers: Number of workers for data loading
+        use_crops: If True, use crop-based dataset; if False, use full images
+        crop_height: Height of crops (only used if use_crops=True)
+        crop_width: Width of crops (only used if use_crops=True)
+        crop_stride: Stride for crops (only used if use_crops=True)
+        use_precropped: If True, load pre-cropped images from disk
+        precropped_dir: Path to pre-cropped images directory
+    
+    Returns:
+        train_loader, val_loader, val_df
     """
     train_df = df[df['fold'] != fold].copy()
     val_df = df[df['fold'] == fold].copy()
     
-    print(f"Fold {fold}: Train samples = {len(train_df)}, Val samples = {len(val_df)}")
+    print(f"\nFold {fold}: Train images = {len(train_df)}, Val images = {len(val_df)}")
     
-    train_dataset = SteelDataset(train_df, data_folder, mean, std, phase='train')
-    val_dataset = SteelDataset(val_df, data_folder, mean, std, phase='val')
+    if use_precropped:
+        # Load pre-cropped images from disk
+        print(f"Using PRE-CROPPED mode from: {precropped_dir}")
+        
+        # Load crop mapping CSV
+        crop_mapping_path = os.path.join(precropped_dir, 'crop_mapping.csv')
+        if not os.path.exists(crop_mapping_path):
+            raise FileNotFoundError(
+                f"Crop mapping file not found: {crop_mapping_path}\n"
+                f"Please run: python precrop_images.py --output_dir {precropped_dir}"
+            )
+        
+        crop_df = pd.read_csv(crop_mapping_path)
+        
+        # Filter crops by fold
+        train_crop_df = crop_df[crop_df['fold'] != fold].copy()
+        val_crop_df = crop_df[crop_df['fold'] == fold].copy()
+        
+        print(f"  Train crops: {len(train_crop_df)} (from {len(train_df)} images)")
+        print(f"  Val crops: {len(val_crop_df)} (from {len(val_df)} images)")
+        
+        train_dataset = SteelPrecroppedDataset(
+            train_crop_df, precropped_dir, mean, std, phase='train'
+        )
+        val_dataset = SteelPrecroppedDataset(
+            val_crop_df, precropped_dir, mean, std, phase='val'
+        )
+        
+    elif use_crops:
+        print(f"Using CROP mode: {crop_height}x{crop_width} with stride {crop_stride}")
+        train_dataset = SteelCropsDataset(
+            train_df, data_folder, mean, std, 
+            phase='train',
+            crop_height=crop_height,
+            crop_width=crop_width,
+            stride=crop_stride
+        )
+        val_dataset = SteelCropsDataset(
+            val_df, data_folder, mean, std,
+            phase='val',
+            crop_height=crop_height,
+            crop_width=crop_width,
+            stride=crop_stride
+        )
+    else:
+        print(f"Using FULL IMAGE mode: 256x1600")
+        train_dataset = SteelDataset(train_df, data_folder, mean, std, phase='train')
+        val_dataset = SteelDataset(val_df, data_folder, mean, std, phase='val')
+        print(f"  TRAIN - Total samples: {len(train_dataset)}")
+        print(f"  VAL - Total samples: {len(val_dataset)}")
     
     train_loader = DataLoader(
         train_dataset,
@@ -241,7 +490,7 @@ def get_train_val_loaders(df, fold, data_folder, mean, std, batch_size_train,
         val_dataset,
         batch_size=batch_size_val,
         num_workers=num_workers,
-        pin_memory=True,
+        pin_memory=False,
         shuffle=False,
         drop_last=False,
     )

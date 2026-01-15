@@ -7,6 +7,7 @@ import time
 import random
 import argparse
 import warnings
+import shutil
 from datetime import datetime
 
 import numpy as np
@@ -99,6 +100,13 @@ class Trainer:
             self.criterion = DiceLoss()
         elif config.LOSS == 'combo':
             self.criterion = BCEDiceLoss()
+        elif config.LOSS == 'bce_pos_weight':
+            from losses import BCEWithPosWeightLoss
+            self.criterion = BCEWithPosWeightLoss(pos_weight=(2.0, 2.0, 1.0, 1.5))
+        elif config.LOSS == 'bce_dice_pos_weight':
+            from losses import BCEDiceWithPosWeightLoss
+            self.criterion = BCEDiceWithPosWeightLoss(pos_weight=(2.0, 2.0, 1.0, 1.5), 
+                                                      bce_weight=0.75, dice_weight=0.25)
         else:
             raise ValueError(f"Unknown loss: {config.LOSS}")
         
@@ -136,7 +144,13 @@ class Trainer:
                                        seed=config.SEED, train_images_dir=config.TRAIN_IMAGES_DIR)
         self.train_loader, self.val_loader, self.val_df = get_train_val_loaders(
             df, fold, config.TRAIN_IMAGES_DIR, config.MEAN, config.STD,
-            self.batch_size_train, self.batch_size_val, self.num_workers
+            self.batch_size_train, self.batch_size_val, self.num_workers,
+            use_crops=config.USE_CROPS,
+            crop_height=config.CROP_HEIGHT,
+            crop_width=config.CROP_WIDTH,
+            crop_stride=config.CROP_STRIDE,
+            use_precropped=config.USE_PRECROPPED,
+            precropped_dir=config.PRECROPPED_DIR
         )
         
         # Store val_df for OOF predictions
@@ -241,9 +255,13 @@ class Trainer:
         
         return epoch_loss, metrics
     
-    def validate_one_epoch(self, epoch):
+    def validate_one_epoch(self, epoch, store_oof=False):
         """
         Validate for one epoch
+        
+        Args:
+            epoch: Current epoch number
+            store_oof: Whether to store OOF predictions (only when generating final OOF)
         """
         self.model.eval()
         metric_tracker = MetricTracker('val', threshold=config.THRESHOLD,
@@ -256,6 +274,8 @@ class Trainer:
         print(f"\n{'='*80}")
         print(f"Fold {self.fold} | Epoch {epoch+1}/{self.num_epochs} | Phase: VALIDATION")
         print(f"{'='*80}")
+        if store_oof:
+            print(f"  NOTE: Generating OOF predictions from best model")
         
         with torch.no_grad():
             for batch_idx, (images, masks, image_ids) in enumerate(self.val_loader):
@@ -267,10 +287,17 @@ class Trainer:
                 masks_cpu = masks.cpu()
                 metric_tracker.update(outputs_cpu, masks_cpu)
                 
-                # Store OOF predictions
-                probs = torch.sigmoid(outputs_cpu).numpy()
-                for i, image_id in enumerate(image_ids):
-                    oof_preds_epoch[image_id] = probs[i]
+                # Store OOF predictions only when requested
+                if store_oof:
+                    probs = torch.sigmoid(outputs_cpu).numpy()
+                    for i, image_id in enumerate(image_ids):
+                        # Store as binary masks (uint8) or probabilities (float32)
+                        if config.OOF_STORE_BINARY:
+                            # Binary masks: 4x smaller memory (0.52 MB vs 2.1 MB per crop)
+                            oof_preds_epoch[image_id] = (probs[i] > config.THRESHOLD).astype(np.uint8)
+                        else:
+                            # Full probabilities: keeps all prediction information
+                            oof_preds_epoch[image_id] = probs[i]
                 
                 # Log progress
                 if (batch_idx + 1) % config.LOG_INTERVAL == 0:
@@ -300,8 +327,10 @@ class Trainer:
         self.history['val_dice'].append(metrics['dice'])
         self.history['val_iou'].append(metrics['iou'])
         
-        # Store OOF predictions for this epoch
-        self.oof_predictions = oof_preds_epoch
+        # Return OOF predictions if generated
+        if store_oof:
+            print(f"  OOF predictions generated: {len(oof_preds_epoch)} samples")
+            return epoch_loss, metrics, oof_preds_epoch
         
         return epoch_loss, metrics
     
@@ -362,6 +391,54 @@ class Trainer:
             torch.save(state, best_path)
             print(f"  *** New best model saved: {best_path} ***")
     
+    def generate_oof_predictions(self):
+        """
+        Generate OOF predictions from the best model
+        This is called after training completes to ensure OOF is from the best epoch
+        """
+        print(f"\n{'='*80}")
+        print(f"Generating OOF predictions from best model")
+        print(f"{'='*80}")
+        
+        # Load best model
+        best_model_path = os.path.join(self.fold_dir, 'best_model.pth')
+        if not os.path.exists(best_model_path):
+            print(f"  WARNING: Best model not found at {best_model_path}")
+            print(f"  Skipping OOF generation")
+            return
+        
+        print(f"  Loading best model from: {best_model_path}")
+        checkpoint = torch.load(best_model_path, map_location=self.device)
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        best_dice = checkpoint.get('best_dice', 0.0)
+        best_epoch = checkpoint.get('epoch', -1)
+        print(f"  Best model: Epoch {best_epoch + 1}, Dice: {best_dice:.4f}")
+        
+        # Run validation with OOF storage enabled
+        self.model.eval()
+        oof_preds = {}
+        
+        with torch.no_grad():
+            for batch_idx, (images, masks, image_ids) in enumerate(self.val_loader):
+                images = images.to(self.device)
+                outputs = self.model(images)
+                outputs_cpu = outputs.detach().cpu()
+                
+                probs = torch.sigmoid(outputs_cpu).numpy()
+                for i, image_id in enumerate(image_ids):
+                    # Store as binary masks (uint8) or probabilities (float32)
+                    if config.OOF_STORE_BINARY:
+                        oof_preds[image_id] = (probs[i] > config.THRESHOLD).astype(np.uint8)
+                    else:
+                        oof_preds[image_id] = probs[i]
+                
+                if (batch_idx + 1) % config.LOG_INTERVAL == 0:
+                    print(f"  Batch [{batch_idx+1}/{len(self.val_loader)}]")
+        
+        self.oof_predictions = oof_preds
+        print(f"  OOF predictions generated: {len(oof_preds)} samples")
+        print(f"{'='*80}\n")
+    
     def save_oof_predictions(self):
         """
         Save out-of-fold predictions
@@ -420,7 +497,13 @@ class Trainer:
             
             print(f"\n  Current LR: {current_lr:.2e} | Best Dice: {self.best_dice:.4f} | Best Loss: {self.best_loss:.4f}")
             
+            # Clear GPU cache and force garbage collection to free memory
             torch.cuda.empty_cache()
+            import gc
+            gc.collect()
+        
+        # Generate OOF predictions from the best model
+        self.generate_oof_predictions()
         
         # Save final outputs
         self.save_oof_predictions()
@@ -448,6 +531,12 @@ def main():
     # Create output directory
     output_dir = config.OUTPUT_DIR
     os.makedirs(output_dir, exist_ok=True)
+    
+    # Copy config.py to output directory for reproducibility
+    config_source = 'config.py'
+    config_dest = os.path.join(output_dir, 'config.py')
+    shutil.copy2(config_source, config_dest)
+    print(f"Configuration saved to: {config_dest}\n")
     
     # Train folds
     if args.all_folds:
@@ -477,6 +566,16 @@ def main():
         print(f"Output dir: {output_dir}")
         print(f"Model: {config.MODEL_ARCH} with {config.ENCODER} encoder")
         print(f"Num classes: {config.NUM_CLASSES}")
+        if config.USE_PRECROPPED:
+            print(f"Image mode: PRE-CROPPED")
+            print(f"  Pre-cropped dir: {config.PRECROPPED_DIR}")
+        elif config.USE_CROPS:
+            print(f"Image mode: CROPS")
+            print(f"  Crop size: {config.CROP_HEIGHT}x{config.CROP_WIDTH}")
+            print(f"  Crop stride: {config.CROP_STRIDE}")
+        else:
+            print(f"Image mode: FULL IMAGES")
+            print(f"  Image size: {config.IMG_HEIGHT}x{config.IMG_WIDTH}")
         print(f"Num folds: {config.NUM_FOLDS}")
         print(f"Num epochs: {config.NUM_EPOCHS}")
         print(f"Batch size: {config.BATCH_SIZE_TRAIN} (effective: {config.BATCH_SIZE_TRAIN * config.ACCUMULATION_STEPS})")
